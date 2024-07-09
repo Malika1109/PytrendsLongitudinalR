@@ -1,0 +1,28 @@
+{
+    "id": "85D26060",
+    "path": "~/Desktop/PytrendsLongitudnalR/man/convert_cross_section.Rd",
+    "project_path": "man/convert_cross_section.Rd",
+    "type": "r_doc",
+    "hash": "197757428",
+    "contents": "",
+    "dirty": false,
+    "created": 1720519530825.0,
+    "source_on_save": false,
+    "relative_order": 10,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720523065,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720523065,
+    "read_only": true,
+    "read_only_alternatives": [
+        "R/convert_cross_section.R"
+    ]
+}

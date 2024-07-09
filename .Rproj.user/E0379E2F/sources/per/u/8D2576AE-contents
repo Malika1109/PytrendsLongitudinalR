@@ -1,0 +1,13 @@
+library(PytrendsLongitudnalR)
+
+params <- initialize_request_trends(
+  keyword = "Joe Biden",
+  topic = "/m/012gx2",
+  folder_name = "biden_pack",
+  start_date = "2019-12-29",  # Date string
+  end_date = "2024-05-19",     # Date string
+  data_format = "weekly"
+)
+
+cross_section(params, geo = "US", resolution="REGION")
+time_series(params, reference_geo_code = "US-CA")

@@ -1,0 +1,84 @@
+---
+title: "PytrendsLongitudnalR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PytrendsLongitudnalR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+Welcome to the vignette for PytrendsLongitudnalR, a package for collecting and analyzing Google Trends data over time. This vignette will guide you through the setup process and show you how to use the package's main functionalities.
+
+Installation
+
+To install PytrendsLongitudnalR, you first need to set up a virtual environment and install necessary Python dependencies. Here’s how to do it:
+
+```{r install, eval = FALSE}
+# Install reticulate if not already installed
+if (!requireNamespace("reticulate", quietly = TRUE)) {
+  install.packages("reticulate")
+}
+
+# Load reticulate library
+library(reticulate)
+
+# Create a virtual environment
+virtualenv_create(envname = "pytrends-in-r")
+
+# Install required Python packages in the virtual environment
+virtualenv_install("pytrends-in-r", packages = c("pandas", "requests", "pytrends", "rich"))
+
+# Activate the virtual environment
+use_virtualenv("pytrends-in-r", required = TRUE)
+```
+
+You can install the PytrendsLongitudnalR package from CRAN using:
+
+
+```{r setup, eval = FALSE}
+install.packages("PytrendsLongitudnalR")
+```
+
+Usage
+
+Now you can start using PytrendsLongitudnalR to collect Google Trends data.
+```{r usage, eval = FALSE}
+library(PytrendsLongitudnalR)
+
+# Initialize parameters for data collection
+params <- initialize_request_trends(
+  keyword = "Joe Biden",
+  topic = "/m/012gx2",
+  folder_name = "biden_save",
+  start_date = "2019-12-29",
+  end_date = "2024-05-19",
+  data_format = "weekly"
+)
+
+# Collect cross-section data
+cross_section(params, geo = "US")
+
+# Collect time series data
+time_series(params, reference_geo_code = "US")
+```
+
+WARNING
+Please make sure to run the methods in the following sequence:
+
+cross_section
+
+time_series
+
+concat_time_series
+
+convert_time_series
+
+We have noticed some unusual behaviors if not run in the given sequence. Firstly concat_time_series depends on time_series and convert_cross_section depends on all the three. We have noticed if time_series is ran before cross_section then sometimes the output gets influenced by time_series parameters. We are troubleshooting the issue. Until then, please follow the sequence to attain the expected result.

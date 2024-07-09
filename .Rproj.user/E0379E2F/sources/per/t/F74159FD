@@ -1,0 +1,28 @@
+{
+    "id": "F74159FD",
+    "path": "~/Desktop/PytrendsLongitudnalR/man/concat_time_series.Rd",
+    "project_path": "man/concat_time_series.Rd",
+    "type": "r_doc",
+    "hash": "1611729143",
+    "contents": "",
+    "dirty": true,
+    "created": 1720513450805.0,
+    "source_on_save": false,
+    "relative_order": 22,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "21,54",
+        "scrollLine": "12"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720534024,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720535910116,
+    "read_only": true,
+    "read_only_alternatives": [
+        "R/concat_time_series.R"
+    ]
+}

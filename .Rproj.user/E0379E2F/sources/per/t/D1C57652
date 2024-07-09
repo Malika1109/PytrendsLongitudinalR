@@ -1,0 +1,27 @@
+{
+    "id": "D1C57652",
+    "path": "~/Desktop/PytrendsLongitudnalR/R/initialize_request_trends.R",
+    "project_path": "R/initialize_request_trends.R",
+    "type": "r_source",
+    "hash": "3370617063",
+    "contents": "",
+    "dirty": false,
+    "created": 1720510067208.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "5,68",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720527731,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720527731162,
+    "read_only": false,
+    "read_only_alternatives": []
+}
