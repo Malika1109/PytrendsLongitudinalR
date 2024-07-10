@@ -1,0 +1,55 @@
+library(PytrendsLongitudnalR)
+
+params <- initialize_request_trends(
+  keyword = "Joe Biden",
+  topic = "/m/012gx2",
+  folder_name = "biden_pack",
+  start_date = "2019-12-29",  # Date string
+  end_date = "2024-05-19",     # Date string
+  data_format = "weekly"
+)
+
+cross_section(params, geo = "US", resolution="REGION")
+time_series(params, reference_geo_code = "US-CA")
+
+
+
+
+# Load the package namespace
+pkg_name <- "PytrendsLongitudnalR"
+ns <- asNamespace(pkg_name)
+
+# Get all functions in the package
+all_funs <- ls(ns)
+
+# Check each function if it is an S3 method
+s3_methods <- lapply(all_funs, function(fun) {
+  f <- get(fun, envir = ns)
+  if (inherits(f, "function")) {
+    if (!is.null(attr(f, "srcref")) && !is.null(attr(f, "s3method"))) {
+      return(fun)
+    }
+  }
+  return(NULL)
+})
+
+# Filter out NULLs
+s3_methods <- unlist(s3_methods)
+
+# Print S3 methods
+print(s3_methods)
+
+
+
+
+#convert_cross_section
+# @method file path
+# @method is na
+# @method row names
+# @method write csv
+# @method list files
+# @method file exists
+# @method data frame
+# @method as POSIXct
+# @method as character
+# @method as numeric

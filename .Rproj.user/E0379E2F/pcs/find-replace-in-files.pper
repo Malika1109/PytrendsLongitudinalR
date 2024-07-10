@@ -1,15 +1,15 @@
 {
     "dialog-state": {
-        "query": "cat",
+        "query": "\\b\\w+\\.\\w+\\b",
         "path": "",
-        "regex": false,
+        "regex": true,
         "caseSensitive": false,
         "wholeWord": false,
         "filePatterns": [],
         "useGitGrep": true,
-        "excludeGitIgnore": true,
+        "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 51,
+        "resultsCount": 242,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

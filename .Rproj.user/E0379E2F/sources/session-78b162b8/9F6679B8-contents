@@ -1,0 +1,46 @@
+## ---- include = FALSE---------------------------------------------------------
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+## ----install, eval = FALSE----------------------------------------------------
+#  # Install reticulate if not already installed
+#  if (!requireNamespace("reticulate", quietly = TRUE)) {
+#    install.packages("reticulate")
+#  }
+#  
+#  # Load reticulate library
+#  library(reticulate)
+#  
+#  # Create a virtual environment
+#  virtualenv_create(envname = "pytrends-in-r")
+#  
+#  # Install required Python packages in the virtual environment
+#  virtualenv_install("pytrends-in-r", packages = c("pandas", "requests", "pytrends", "rich"))
+#  
+#  # Activate the virtual environment
+#  use_virtualenv("pytrends-in-r", required = TRUE)
+
+## ----setup, eval = FALSE------------------------------------------------------
+#  install.packages("PytrendsLongitudnalR")
+
+## ----usage, eval = FALSE------------------------------------------------------
+#  library(PytrendsLongitudnalR)
+#  
+#  # Initialize parameters for data collection
+#  params <- initialize_request_trends(
+#    keyword = "Joe Biden",
+#    topic = "/m/012gx2",
+#    folder_name = "biden_save",
+#    start_date = "2019-12-29",
+#    end_date = "2024-05-19",
+#    data_format = "weekly"
+#  )
+#  
+#  # Collect cross-section data
+#  cross_section(params, geo = "US")
+#  
+#  # Collect time series data
+#  time_series(params, reference_geo_code = "US")
+

@@ -1,0 +1,26 @@
+{
+    "id": "61777853",
+    "path": "~/Desktop/Rtrends-longitudnal/Pytrends_longitudnal_in_R.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1720513342473.0,
+    "source_on_save": false,
+    "relative_order": 20,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "31,58",
+        "scrollLine": "22"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720506808,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720506808,
+    "read_only": false,
+    "read_only_alternatives": []
+}
