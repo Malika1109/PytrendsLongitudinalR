@@ -17,37 +17,12 @@ knitr::opts_chunk$set(
 
 Welcome to the vignette for PytrendsLongitudnalR, a package for collecting and analyzing Google Trends data over time. This vignette will guide you through the setup process and show you how to use the package's main functionalities.
 
-Installation
-
-To install PytrendsLongitudnalR, you first need to set up a virtual environment and install necessary Python dependencies. Here’s how to do it:
-
-```{r install, eval = FALSE}
-# Install reticulate if not already installed
-if (!requireNamespace("reticulate", quietly = TRUE)) {
-  install.packages("reticulate")
-}
-
-# Load reticulate library
-library(reticulate)
-
-# Create a virtual environment
-virtualenv_create(envname = "pytrends-in-r")
-
-# Install required Python packages in the virtual environment
-virtualenv_install("pytrends-in-r", packages = c("pandas", "requests", "pytrends", "rich"))
-
-# Activate the virtual environment
-use_virtualenv("pytrends-in-r", required = TRUE)
-```
-
-You can install the PytrendsLongitudnalR package from CRAN using:
+This is a package for downloading cross-section and time-series Google Trends and converting them to longitudinal data.
+Although Google Trends provides cross-section and time-series search data, longitudinal Google Trends data are not readily available. There exist several practical issues that make it difficult for researchers to generate longitudinal Google Trends data themselves. First, Google Trends provides normalized counts from zero to 100. As a result, combining different regions' time-series Google Trends data does not create desired longitudinal data. For the same reason, combining cross-sectional Google Trends data over time does not create desired longitudinal data. Second, Google Trends has restrictions on data formats and timeline. For instance, if you want to collect daily data for 2 years, you cannot do so. Google Trends automatically provides weekly data if your request timeline is more than 269 days. Similarly, Google Trends automatically provides monthly data if your request timeline is more than 269 weeks even though you want to collect weekly data.
+This package resolves the aforementioned issues and allows researchers to generate longitudinal Google Trends.
 
 
-```{r setup, eval = FALSE}
-install.packages("PytrendsLongitudnalR")
-```
-
-Usage
+## Usage
 
 Now you can start using PytrendsLongitudnalR to collect Google Trends data.
 ```{r usage, eval = FALSE}
@@ -70,7 +45,7 @@ cross_section(params, geo = "US")
 time_series(params, reference_geo_code = "US")
 ```
 
-WARNING
+## WARNING
 Please make sure to run the methods in the following sequence:
 
 cross_section
