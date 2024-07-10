@@ -18,8 +18,10 @@ knitr::opts_chunk$set(
 #  )
 #  
 #  # Collect cross-section data
-#  cross_section(params, geo = "US")
+#  cross_section(params, geo = "US", resolution = "REGION")
 #  
 #  # Collect time series data
-#  time_series(params, reference_geo_code = "US")
+#  time_series(params, reference_geo_code = "US-CA")
+#  
+#  convert_cross_section(params, reference_geo_code = "US-CA")
 
