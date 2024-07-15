@@ -22,33 +22,21 @@ platform <- NULL
   python3.11_path <- "/Users/malika/miniconda3/bin/python3.11"
 
   # Check if the virtual environment exists
-  if (!reticulate::virtualenv_exists("~/.virtualenvs/pytrends-in-r")) {
+  if (!reticulate::virtualenv_exists("~.virtualenvs/pytrends-in-r-new")) {
     # If it doesn't exist, create it
-    reticulate::virtualenv_create(envname = "~/.virtualenvs/pytrends-in-r", python = python3.11_path)
+    reticulate::virtualenv_create(envname = "~/.virtualenvs/pytrends-in-r-new", python = python3.11_path)
   }
 
-  # Install pandas if not already installed
-  if (!reticulate::py_module_available("pandas")) {
-    reticulate::py_install("pandas", envname = "~/.virtualenvs/pytrends-in-r")
-  }
-
-  # Install requests if not already installed
-  if (!reticulate::py_module_available("requests")) {
-    reticulate::py_install("requests", envname = "~/.virtualenvs/pytrends-in-r")
-  }
-
-  # Install pytrends if not already installed
-  if (!reticulate::py_module_available("pytrends")) {
-    reticulate::py_install("pytrends", envname = "~/.virtualenvs/pytrends-in-r")
-  }
-
-  # Install rich if not already installed
-  if (!reticulate::py_module_available("rich")) {
-    reticulate::py_install("rich", envname = "~/.virtualenvs/pytrends-in-r")
+  # Install packages if not already installed
+  packages_to_install <- c("pandas", "requests", "pytrends", "rich")
+  for (package in packages_to_install) {
+    if (!reticulate::py_module_available(package)) {
+      reticulate::py_install(package, envname = "pytrends-in-r-new")
+    }
   }
 
 
-  reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r", required = TRUE)
+  reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r-new", required = TRUE)
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
   ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)$ResponseError
