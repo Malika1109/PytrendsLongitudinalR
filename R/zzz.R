@@ -45,7 +45,7 @@ platform <- NULL
       # Fallback: install Python and create the virtual environment
       packageStartupMessage("Failed to create virtual environment. Installing Python ", desired_python_version, " using reticulate.")
       #reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
-      reticulate::virtualenv_create(envname = venv_path, python = reticulate:virtualenv_starter(desired_python_version))
+      reticulate::virtualenv_create(envname = venv_path)
     })
   }
 
