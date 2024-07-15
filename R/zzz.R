@@ -19,32 +19,28 @@ platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
+  # Specify desired Python version
   desired_python_version <- "3.11.9"
+
   # Define paths
-  venv_path <- "~/.virtualenvs/pytrends-in-r-new"
+  venv_path <- file.path("~", ".virtualenvs", "pytrends-in-r-new")
   python_path <- file.path(venv_path, "bin", "python")
 
-  # Use Python from the virtual environment if available
-  if (file.exists(python_path)) {
-    tryCatch({
-      reticulate::use_python(python_path, required = TRUE)
-    }, error = function(e) {
-      packageStartupMessage("Failed to initialize Python at", python_path)
-      stop("Python initialization failed. Check Python installation and path.")
-    })
-  } else {
-    # If Python executable doesn't exist, attempt to create the virtual environment
+  # Check if the virtual environment exists
+  if (!reticulate::virtualenv_exists(venv_path)) {
+    # If it doesn't exist, attempt to create it
     tryCatch({
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
-      reticulate::use_python(python_path, required = TRUE)
     }, error = function(e) {
-      # Fallback: install Python and recreate the virtual environment
+      # Fallback: install Python and create the virtual environment
       packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
       reticulate::install_python(version = desired_python_version)
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
-      reticulate::use_python(python_path, required = TRUE)
     })
   }
+
+  # Use the virtual environment for reticulate operations
+  reticulate::use_virtualenv(venv_path, required = TRUE)
 
   # Install packages if not already installed
   packages_to_install <- c("pandas", "requests", "pytrends", "rich")
@@ -54,8 +50,6 @@ platform <- NULL
     }
   }
 
-
-  reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r-new", required = TRUE)
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
   ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)$ResponseError
