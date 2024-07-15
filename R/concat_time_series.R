@@ -13,10 +13,18 @@
 #'
 #' @examples
 #' \dontrun{
+#' # Set up a temporary directory
+#' temp_dir <- tempdir()
+#' folder_name <- file.path(temp_dir, "biden")
+#'
 #' # Example usage
-#' params<-initialize_request_trends("Joe Biden","/m/012gx2","biden","2017-12-3","2024-05-1","weekly")
+#' params <- initialize_request_trends("Joe Biden", "/m/012gx2",
+#' folder_name, "2017-12-3", "2024-05-1", "weekly")
 #' time_series(params, reference_geo_code = "US-CA")
 #' concat_time_series(params, reference_geo_code = "US-CA")
+#'
+#' # Clean up temporary directory
+#' unlink(temp_dir, recursive = TRUE)
 #' }
 #' @importFrom utils read.csv write.csv tail
 

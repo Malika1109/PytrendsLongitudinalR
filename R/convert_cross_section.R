@@ -9,12 +9,21 @@
 #'
 #' @examples
 #' \dontrun{
+#' # Set up a temporary directory
+#' temp_dir <- tempdir()
+#' folder_name <- file.path(temp_dir, "biden")
+#'
 #' # Example usage
-#' params<-initialize_request_trends("Joe Biden","/m/012gx2","biden","2019-12-29","2024-05-1","weekly")
-#' cross_section(params, geo = "US", resolution="REGION")
+#' params <- initialize_request_trends("Joe Biden", "/m/012gx2",
+#' folder_name, "2019-12-29", "2024-05-01", "weekly")
+#' cross_section(params, geo = "US", resolution = "REGION")
 #' time_series(params, reference_geo_code = "US-CA")
 #' convert_cross_section(params, reference_geo_code = "US-CA")
+#'
+#' # Clean up temporary directory
+#' unlink(folder_name, recursive = TRUE)
 #' }
+
 #' @importFrom utils read.csv write.csv tail
 #' @export
 #'

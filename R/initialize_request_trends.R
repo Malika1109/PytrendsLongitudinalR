@@ -28,9 +28,22 @@
 #' \item{times}{Optional. Time periods determined for 'weekly' or 'daily' data formats.}
 #'
 #' @examples
-#' \dontrun{
-#' params<-initialize_request_trends("Joe Biden","/m/012gx2","biden","2019-12-29","2024-05-1","weekly")
-#' }
+#' # Create a temporary folder for the example
+#' temp_folder <- file.path(tempdir(), "google_trends_example")
+#' dir.create(temp_folder, showWarnings = FALSE)
+#'
+#' # Ensure the temporary folder is cleaned up after the example
+#' on.exit(unlink(temp_folder, recursive = TRUE))
+#'
+#' # Run the function with the temporary folder
+#' params <- initialize_request_trends(
+#'   keyword = "Joe Biden",
+#'   topic = "/m/012gx2",
+#'   folder_name = temp_folder,
+#'   start_date = "2019-12-29",
+#'   end_date = "2024-05-1",
+#'   data_format = "weekly"
+#' )
 #' @export
 
 initialize_request_trends <- function(keyword, topic, folder_name, start_date, end_date, data_format) {
