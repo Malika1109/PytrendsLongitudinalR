@@ -45,6 +45,7 @@ platform <- NULL
     reticulate::py_install("rich", envname = "~/.virtualenvs/pytrends-in-r")
   }
 
+
   reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r", required = TRUE)
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq

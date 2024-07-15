@@ -1,4 +1,3 @@
-/Users/malika/Desktop/PytrendsLongitudnalR.Rcheck/00check.log="707AEB0E"
 /Users/malika/Desktop/PytrendsLongitudnalR/.Rbuildignore="5F0194F8"
 /Users/malika/Desktop/PytrendsLongitudnalR/.Rhistory="FDD5B8B6"
 /Users/malika/Desktop/PytrendsLongitudnalR/.github/workflows/rhub.yaml="6DFE56E7"
@@ -11,7 +10,6 @@
 /Users/malika/Desktop/PytrendsLongitudnalR/R/cross_section.R="BB39AB46"
 /Users/malika/Desktop/PytrendsLongitudnalR/R/determine_time_periods.R="329ED8EF"
 /Users/malika/Desktop/PytrendsLongitudnalR/R/initialize_request_trends.R="2D8877F0"
-/Users/malika/Desktop/PytrendsLongitudnalR/R/install_python_deps.R="3F027E43"
 /Users/malika/Desktop/PytrendsLongitudnalR/R/logging_config.R="0E1612BB"
 /Users/malika/Desktop/PytrendsLongitudnalR/R/time_series.R="97E4B624"
 /Users/malika/Desktop/PytrendsLongitudnalR/R/time_series_monthly.R="93B85337"
