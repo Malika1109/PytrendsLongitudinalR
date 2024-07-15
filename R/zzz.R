@@ -20,18 +20,22 @@ platform <- NULL
 .onLoad <- function(libname, pkgname) {
 
   desired_python_version <- "3.11.9"
-  python_path <- "/Users/malika/miniconda3/bin/python3.11"
+  python_path <- "/Users/malika/.virtualenvs/pytrends-in-r-new/bin/python"
+  venv_path <- "~/.virtualenvs/pytrends-in-r-new"
+
+  # Ensure the correct Python is used from the start
+  reticulate::use_python(python_path, required = TRUE)
 
   # Check if the virtual environment exists
-  if (!reticulate::virtualenv_exists("~/.virtualenvs/pytrends-in-r-new")) {
+  if (!reticulate::virtualenv_exists(venv_path)) {
     # If it doesn't exist, create it
     tryCatch({
-      reticulate::virtualenv_create(envname = "~/.virtualenvs/pytrends-in-r-new", python = python_path)
+      reticulate::virtualenv_create(envname = venv_path, python = python_path)
     }, error = function(e) {
       # Fallback: install Python and create the virtual environment
       packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
       reticulate::install_python(version = desired_python_version)
-      reticulate::virtualenv_create(envname = "~/.virtualenvs/pytrends-in-r-new", version = desired_python_version)
+      reticulate::virtualenv_create(envname = venv_path, version = desired_python_version)
     })
   }
 
