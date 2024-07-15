@@ -26,6 +26,12 @@ platform <- NULL
   venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
   python_path <- file.path(venv_path, "bin", "python")
 
+  # Check if the Python executable exists
+  if (!file.exists(python_path)) {
+    # Install Python if it doesn't exist
+    packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
+    reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
+  }
 
   # Use the correct Python installation
   reticulate::use_python(python_path, required = TRUE)
@@ -37,8 +43,8 @@ platform <- NULL
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     }, error = function(e) {
       # Fallback: install Python and create the virtual environment
-      packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
-      reticulate::install_python(version = desired_python_version)
+      packageStartupMessage("Failed to create virtual environment. Installing Python ", desired_python_version, " using reticulate.")
+      #reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     })
   }
