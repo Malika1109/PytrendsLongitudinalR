@@ -30,7 +30,7 @@ platform <- NULL
   if (!file.exists(python_path)) {
     # Install Python if it doesn't exist
     packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
-    reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
+    reticulate::install_python(version = desired_python_version)
   }
 
   # Use the correct Python installation
