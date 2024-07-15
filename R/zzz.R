@@ -18,7 +18,7 @@ math <- NULL
 platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
-  install_python_deps()
+  #install_python_deps()
 
   reticulate::use_virtualenv("pytrends-in-r", required = TRUE)
 
