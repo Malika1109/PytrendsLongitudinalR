@@ -25,6 +25,26 @@ platform <- NULL
     reticulate::virtualenv_create("~/.virtualenvs/pytrends-in-r")
   }
 
+  # Install pandas if not already installed
+  if (!reticulate::py_module_available("pandas")) {
+    reticulate::py_install("pandas", envname = "~/.virtualenvs/pytrends-in-r")
+  }
+
+  # Install requests if not already installed
+  if (!reticulate::py_module_available("requests")) {
+    reticulate::py_install("requests", envname = "~/.virtualenvs/pytrends-in-r")
+  }
+
+  # Install pytrends if not already installed
+  if (!reticulate::py_module_available("pytrends")) {
+    reticulate::py_install("pytrends", envname = "~/.virtualenvs/pytrends-in-r")
+  }
+
+  # Install rich if not already installed
+  if (!reticulate::py_module_available("rich")) {
+    reticulate::py_install("rich", envname = "~/.virtualenvs/pytrends-in-r")
+  }
+
   reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r", required = TRUE)
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
