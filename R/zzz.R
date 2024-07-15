@@ -34,7 +34,7 @@ platform <- NULL
   }
 
   # Use the correct Python installation
-  reticulate::use_python(python_path, required = TRUE)
+  #reticulate::use_python_version(desired_python_version)
 
   # Check if the virtual environment exists
   if (!reticulate::virtualenv_exists(venv_path)) {
@@ -45,7 +45,7 @@ platform <- NULL
       # Fallback: install Python and create the virtual environment
       packageStartupMessage("Failed to create virtual environment. Installing Python ", desired_python_version, " using reticulate.")
       #reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
-      reticulate::virtualenv_create(envname = venv_path, python = python_path)
+      reticulate::virtualenv_create(envname = venv_path, python = virtualenv_starter(desired_python_version))
     })
   }
 
