@@ -19,7 +19,7 @@ platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
-  desired_python_version <- "3.11:latest"
+  desired_python_version <- "3.11.9"
   python_path <- "/Users/malika/miniconda3/bin/python3.11"
 
   # Check if the virtual environment exists
