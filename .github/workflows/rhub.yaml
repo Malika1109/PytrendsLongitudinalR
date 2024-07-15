@@ -24,7 +24,6 @@ on:
         type: string
 
 jobs:
-
   setup:
     runs-on: ubuntu-latest
     outputs:
@@ -32,11 +31,13 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
-    # NO NEED TO CHECKOUT HERE
-    - uses: r-hub/actions/setup@v1
-      with:
-        config: ${{ github.event.inputs.config }}
-      id: rhub-setup
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - uses: r-hub/actions/setup@v1
+        with:
+          config: ${{ github.event.inputs.config }}
+        id: rhub-setup
 
   linux-containers:
     needs: setup
@@ -51,6 +52,9 @@ jobs:
       image: ${{ matrix.config.container }}
 
     steps:
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
       - uses: r-hub/actions/checkout@v1
       - uses: r-hub/actions/platform-info@v1
         with:
@@ -76,6 +80,9 @@ jobs:
         config: ${{ fromJson(needs.setup.outputs.platforms) }}
 
     steps:
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
       - uses: r-hub/actions/checkout@v1
       - uses: r-hub/actions/setup-r@v1
         with:
