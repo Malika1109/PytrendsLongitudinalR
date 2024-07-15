@@ -1,6 +1,6 @@
 {
     "dialog-state": {
-        "query": "virtualenv",
+        "query": "pytrends-in-r",
         "path": "",
         "regex": true,
         "caseSensitive": false,
@@ -9,7 +9,7 @@
         "useGitGrep": true,
         "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 4,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

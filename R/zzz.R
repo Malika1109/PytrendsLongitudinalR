@@ -18,9 +18,14 @@ math <- NULL
 platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
-  #install_python_deps()
 
-  reticulate::use_virtualenv("pytrends-in-r", required = TRUE)
+  # Check if the virtual environment exists
+  if (!reticulate::virtualenv_exists("~/.virtualenvs/pytrends-in-r")) {
+    # If it doesn't exist, create it
+    reticulate::virtualenv_create("~/.virtualenvs/pytrends-in-r")
+  }
+
+  reticulate::use_virtualenv("~/.virtualenvs/pytrends-in-r", required = TRUE)
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
   ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)$ResponseError
