@@ -19,10 +19,12 @@ platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
+  python3.11_path <- "/Users/malika/miniconda3/bin/python3.11"
+
   # Check if the virtual environment exists
   if (!reticulate::virtualenv_exists("~/.virtualenvs/pytrends-in-r")) {
     # If it doesn't exist, create it
-    reticulate::virtualenv_create("~/.virtualenvs/pytrends-in-r")
+    reticulate::virtualenv_create(envname = "~/.virtualenvs/pytrends-in-r", python = python3.11_path)
   }
 
   # Install pandas if not already installed
