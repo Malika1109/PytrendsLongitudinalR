@@ -19,7 +19,12 @@ platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
-  python3.11_path <- "/Users/malika/miniconda3/bin/python3.11"
+  # Set the Python path based on the operating system
+  if (.Platform$OS.type == "windows") {
+    python3.11_path <- "C:/hostedtoolcache/windows/Python/3.9.13/x64/python.exe"
+  } else {
+    python3.11_path <- "/Users/malika/miniconda3/bin/python3.11"
+  }
 
   # Check if the virtual environment exists
   if (!reticulate::virtualenv_exists("~.virtualenvs/pytrends-in-r-new")) {
