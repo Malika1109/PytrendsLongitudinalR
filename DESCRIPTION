@@ -20,9 +20,13 @@ Suggests:
 VignetteBuilder: knitr
 License: MIT + file LICENSE
 Config/reticulate:
-  packages:
-    - pandas
-    - requests
-    - pytrends
-    - rich
+  list(
+    virtualenv = "pytrends-in-r",
+    packages = list(
+      list(package = "pandas"),
+      list(package = "requests"),
+      list(package = "pytrends"),
+      list(package = "rich")
+    )
+  )
 
