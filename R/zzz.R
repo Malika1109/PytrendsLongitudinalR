@@ -19,40 +19,46 @@ platform <- NULL
 
 .onLoad <- function(libname, pkgname) {
 
-  #desired_python_version <- "3.11.9"
+  # Specify desired Python version
+  desired_python_version <- "3.11.9"
 
-  #venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
-  #python_path <- file.path(venv_path, "bin", "python")
+  # Define paths
+  venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
+  python_path <- file.path(venv_path, "bin", "python")
 
   # Check if the Python executable exists
-  #if (!file.exists(python_path)) {
+  if (!file.exists(python_path)) {
     # Install Python if it doesn't exist
-    #packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
-    #reticulate::install_python(version = desired_python_version)
-  #}
+    packageStartupMessage("Specified Python not found. Installing Python ", desired_python_version, " using reticulate.")
+    reticulate::install_python(version = desired_python_version)
+  }
 
+  # Use the correct Python installation
+  #reticulate::use_python_version(desired_python_version)
 
-
-  # if (!reticulate::virtualenv_exists(venv_path)) {
-  #
-  #   tryCatch({
-  #     reticulate::virtualenv_create(envname = venv_path, python = python_path)
-  #   }, error = function(e) {
-  #     #packageStartupMessage("Failed to create virtual environment. Installing Python ", desired_python_version, " using reticulate.")
-  #     reticulate::virtualenv_create(envname = venv_path)
-  #   })
-  # }
+  # Check if the virtual environment exists
+  if (!reticulate::virtualenv_exists(venv_path)) {
+    # If it doesn't exist, attempt to create it
+    tryCatch({
+      reticulate::virtualenv_create(envname = venv_path, python = python_path)
+    }, error = function(e) {
+      # Fallback: install Python and create the virtual environment
+      packageStartupMessage("Failed to create virtual environment. Installing Python ", desired_python_version, " using reticulate.")
+      #reticulate::install_python(version = desired_python_version, envname = "pytrends-in-r-new")
+      reticulate::virtualenv_create(envname = venv_path)
+    })
+  }
 
   # Use the virtual environment for reticulate operations
-  reticulate::use_virtualenv(file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new"), required = TRUE)
+  reticulate::use_virtualenv(venv_path, required = TRUE)
 
-
-  # packages_to_install <- c("pandas", "requests", "pytrends", "rich")
-  # for (package in packages_to_install) {
-  #   if (!reticulate::py_module_available(package)) {
-  #     reticulate::py_install(package, envname = "pytrends-in-r-new")
-  #   }
-  # }
+  # Install packages if not already installed
+  packages_to_install <- c("pandas", "requests", "pytrends", "rich")
+  for (package in packages_to_install) {
+    if (!reticulate::py_module_available(package)) {
+      reticulate::py_install(package, envname = "pytrends-in-r-new")
+    }
+  }
 
 
   TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
