@@ -26,13 +26,6 @@ platform <- NULL
   venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
   python_path <- file.path(venv_path, "bin", "python")
 
-  # Check if the Python executable exists
-  # if (!file.exists(python_path)) {
-  #   reticulate::install_python(version = desired_python_version)
-  # }
-
-  # Use the correct Python installation
-  reticulate::use_python(Sys.getenv("RETICULATE_PYTHON"), required = TRUE)
 
   # Check if the virtual environment exists
   if (!reticulate::virtualenv_exists(venv_path)) {
