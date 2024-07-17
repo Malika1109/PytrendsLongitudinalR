@@ -10,7 +10,7 @@
 #' This function collects Google Trends time series data based on the specified parameters and saves it in the following structure:
 #' \code{folder_name/data_format/over_time/reference_geo_code}.
 #' The filename includes the start and end dates of the data period.
-#' @importFrom utils read.csv write.csv tail
+#' @importFrom utils read.csv write.csv
 #' @return NULL
 
 

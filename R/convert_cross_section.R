@@ -66,7 +66,7 @@ convert_cross_section <- function(params, reference_geo_code = "US", zero_replac
 
 
     # Extract column name from snapshot file
-    if (Sys.info()['sysname'] == "win32") {
+    if (Sys.info()['sysname'] == "Windows") {
 
       fl_name <- tail(unlist(strsplit(snap_file, "\\\\")), 1)
     } else {

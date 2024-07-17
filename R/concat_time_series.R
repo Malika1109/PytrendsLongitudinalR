@@ -26,7 +26,7 @@
 #' # Clean up temporary directory
 #' unlink(temp_dir, recursive = TRUE)
 #' }
-#' @importFrom utils read.csv write.csv tail
+#' @importFrom utils read.csv write.csv
 
 #' @export
 #'

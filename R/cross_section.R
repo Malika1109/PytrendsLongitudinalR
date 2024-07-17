@@ -41,7 +41,7 @@
 #' }
 
 
-#' @importFrom utils read.csv write.csv tail
+#' @importFrom utils read.csv write.csv
 #' @export
 
 cross_section <- function(params, geo = "", resolution = "COUNTRY") {
