@@ -18,7 +18,7 @@
 #' @return NULL
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Create a temporary folder for the example
 #' temp_folder <- file.path(tempdir(), "google_trends_example")
 #' dir.create(temp_folder, showWarnings = FALSE)
@@ -31,13 +31,18 @@
 #'   keyword = "Joe Biden",
 #'   topic = "/m/012gx2",
 #'   folder_name = temp_folder,
-#'   start_date = "2019-12-29",
+#'   start_date = "2019-04-15",
 #'   end_date = "2024-05-1",
 #'   data_format = "weekly"
 #' )
 #'
 #' # Run the cross_section function with the parameters
-#' cross_section(params, geo = "US", resolution = "REGION")
+#' tryCatch({
+#'   cross_section(params, geo = "US", resolution = "REGION")
+#' }, pytrends.exceptions.TooManyRequestsError = function(e) {
+#'   message("Too many requests error: ", conditionMessage(e))
+#'   # You can add additional handling or logging here if needed
+#' })
 #' }
 
 

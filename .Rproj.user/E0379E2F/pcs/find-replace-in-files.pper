@@ -1,6 +1,6 @@
 {
     "dialog-state": {
-        "query": "os",
+        "query": "urllib",
         "path": "",
         "regex": true,
         "caseSensitive": false,
@@ -9,7 +9,7 @@
         "useGitGrep": true,
         "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 82,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true
