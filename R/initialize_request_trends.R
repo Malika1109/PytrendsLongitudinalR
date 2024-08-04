@@ -100,7 +100,7 @@ initialize_request_trends <- function(keyword, topic, folder_name, start_date, e
   jsonlite::write_json(params, params_fl, pretty = TRUE)
 
   # Initialize pytrends request (example)
-  pytrend <- TrendReq()
+  pytrend <- TrendReq(retries=7, backoff_factor=0.3)
 
   # Return a list of initialized values
   list(
