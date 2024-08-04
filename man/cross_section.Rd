@@ -27,7 +27,7 @@ PS: This method may take a long time to complete due to Google Trends API rate l
 For example, collecting 350 days of daily data can take approximately 5 hours.
 }
 \examples{
-\donttest{
+\dontrun{
 # Create a temporary folder for the example
 temp_folder <- file.path(tempdir(), "google_trends_example")
 dir.create(temp_folder, showWarnings = FALSE)

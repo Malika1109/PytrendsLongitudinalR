@@ -18,7 +18,7 @@
 #' @return NULL
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Create a temporary folder for the example
 #' temp_folder <- file.path(tempdir(), "google_trends_example")
 #' dir.create(temp_folder, showWarnings = FALSE)

@@ -19,7 +19,7 @@ This method collects Google Trends time series data by calling pytrends.interest
 The collected data is saved in the structure: \code{folder_name/data_format/over_time/reference_geo_code}.
 }
 \examples{
-\donttest{
+\dontrun{
 # Create a temporary folder for the example
 temp_folder <- file.path(tempdir(), "google_trends_example")
 dir.create(temp_folder, showWarnings = FALSE)
