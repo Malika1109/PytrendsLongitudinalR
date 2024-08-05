@@ -18,22 +18,19 @@
 #' @return NULL
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Create a temporary folder for the example
-#' temp_folder <- file.path(tempdir(), "google_trends_example")
-#' dir.create(temp_folder, showWarnings = FALSE)
 #'
 #' # Ensure the temporary folder is cleaned up after the example
-#' on.exit(unlink(temp_folder, recursive = TRUE))
-#'
-#' # Initialize request trends with the temporary folder
+
+#' # Run the function with the temporary folder
 #' params <- initialize_request_trends(
 #'   keyword = "Joe Biden",
 #'   topic = "/m/012gx2",
-#'   folder_name = temp_folder,
-#'   start_date = "2024-02-01",
-#'   end_date = "2024-05-1",
-#'   data_format = "weekly"
+#'   folder_name = file.path(tempdir(), "biden_save"),
+#'   start_date = "2024-05-01",
+#'   end_date = "2024-05-03",
+#'   data_format = "daily"
 #' )
 #'
 #' # Run the cross_section function with the parameters
@@ -41,8 +38,8 @@
 #'   cross_section(params, geo = "US", resolution = "REGION")
 #' }, pytrends.exceptions.TooManyRequestsError = function(e) {
 #'   message("Too many requests error: ", conditionMessage(e))
-#'   # You can add additional handling or logging here if needed
 #' })
+#' on.exit(unlink(folder_name, recursive = TRUE))
 #' }
 
 

@@ -1,6 +1,6 @@
 #' Converting Cross-section data method
 #' @param params A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.
-#' @param reference_geo_code Same as the reference_geo from concat_time_series(). If any other is used, then the result will not be accurate
+#' @param reference_geo_code Same as the reference_geo from time_series(). If any other is used, then the result will not be accurate
 #' @param zero_replace Same as zero_replace from concat_time_series(). It is highly recommended to use the same to avoid incosistent results.
 #' @details
 #' This final method will rescale the cross section data based on the concatenated time series data.
@@ -9,13 +9,19 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Set up a temporary directory
-#' temp_dir <- tempdir()
-#' folder_name <- file.path(temp_dir, "biden")
+#' # Create a temporary folder for the example
 #'
-#' # Example usage
-#' params <- initialize_request_trends("Joe Biden", "/m/012gx2",
-#' folder_name, "2019-12-29", "2024-05-01", "weekly")
+#' # Ensure the temporary folder is cleaned up after the example
+#' # Run the function with the temporary folder
+#' params <- initialize_request_trends(
+#'   keyword = "Joe Biden",
+#'   topic = "/m/012gx2",
+#'   folder_name = file.path(tempdir(), "biden_save"),
+#'   start_date = "2024-05-01",
+#'   end_date = "2024-05-03",
+#'   data_format = "daily"
+#' )
+#'
 #' cross_section(params, geo = "US", resolution = "REGION")
 #' time_series(params, reference_geo_code = "US-CA")
 #' convert_cross_section(params, reference_geo_code = "US-CA")
@@ -28,7 +34,7 @@
 #' @export
 #'
 
-convert_cross_section <- function(params, reference_geo_code = "US", zero_replace = 0.1) {
+convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_replace = 0.1) {
 
   logger <- params$logger
   folder_name <- params$folder_name

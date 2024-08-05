@@ -24,17 +24,28 @@ This rescaled time_series data will be used in the next method to rescale the cr
 }
 \examples{
 \dontrun{
-# Set up a temporary directory
-temp_dir <- tempdir()
-folder_name <- file.path(temp_dir, "biden")
+# Create a temporary folder for the example
 
-# Example usage
-params <- initialize_request_trends("Joe Biden", "/m/012gx2",
-folder_name, "2017-12-3", "2024-05-1", "weekly")
-time_series(params, reference_geo_code = "US-CA")
+# Ensure the temporary folder is cleaned up after the example
+# Run the function with the temporary folder
+params <- initialize_request_trends(
+  keyword = "Joe Biden",
+  topic = "/m/012gx2",
+  folder_name = file.path(tempdir(), "biden_save"),
+  start_date = "2023-07-30",
+  end_date = "2024-05-03",
+  data_format = "daily"
+)
+
+# Run the time_series function with the parameters
+tryCatch({
+  time_series(params, reference_geo_code = "US-CA")
+}, pytrends.exceptions.TooManyRequestsError = function(e) {
+  message("Too many requests error: ", conditionMessage(e))
+})
 concat_time_series(params, reference_geo_code = "US-CA")
 
 # Clean up temporary directory
-unlink(temp_dir, recursive = TRUE)
+on.exit(unlink(folder_name, recursive = TRUE))
 }
 }
