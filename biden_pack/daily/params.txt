@@ -1,0 +1,8 @@
+{
+  "keyword": ["Joe Biden"],
+  "topic": ["/m/012gx2"],
+  "folder_name": ["biden_pack"],
+  "start_date": ["2024-05-01"],
+  "end_date": ["2024-05-02"],
+  "data_format": ["daily"]
+}

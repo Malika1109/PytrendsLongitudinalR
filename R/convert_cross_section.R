@@ -34,6 +34,7 @@ convert_cross_section <- function(params, reference_geo_code = "US", zero_replac
   folder_name <- params$folder_name
   data_format <- params$data_format
   keyword <- params$keyword
+  topic <- params$topic
   start_date <- params$start_date
   end_date <- params$end_date
 
@@ -81,20 +82,32 @@ convert_cross_section <- function(params, reference_geo_code = "US", zero_replac
     # Read snapshot data
     snap_df <- read.csv(snap_file, header = TRUE, stringsAsFactors = FALSE, na.strings = "", check.names = FALSE)
 
-    snap_df[[keyword]][is.na(snap_df[[keyword]])] <- zero_replace
+    #snap_df[[keyword]][is.na(snap_df[[keyword]])] <- zero_replace
+    col_name_in_snap <- ifelse(keyword %in% names(snap_df), keyword,
+                               ifelse(topic %in% names(snap_df), topic, NA))
+
+
+
+    # Replace NA values with zero_replace
+    snap_df[[col_name_in_snap]][is.na(snap_df[[col_name_in_snap]])] <- zero_replace
+
+    #cat(col_name_in_snap)
+
 
     # Find reference value based on geoCode
-    ref_value <- as.numeric(snap_df[snap_df$geoCode == reference_geo_code, keyword])
+    ref_value <- as.numeric(snap_df[snap_df$geoCode == reference_geo_code, col_name_in_snap])
+
 
     # Calculate conversion multiplier
     conv_multiplier <- time_ind / ref_value
 
     # Perform conversion on snapshot dataframe
-    snap_df[[col_name]] <- round(snap_df[[keyword]] * conv_multiplier, 2)
+    snap_df[[col_name]] <- round(snap_df[[col_name_in_snap]] * conv_multiplier, 2)
+
 
     # Collect initial geoName and geoCode if it's the first iteration
     if (ind == 1) {
-      conv <- snap_df[c("geoName", "geoCode")]
+      conv <- snap_df[, c(1, which(names(snap_df) == "geoCode"))]
     }
 
 

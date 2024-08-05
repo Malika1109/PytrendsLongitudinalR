@@ -1,15 +1,15 @@
 {
     "dialog-state": {
-        "query": "urllib",
+        "query": "cat",
         "path": "",
         "regex": true,
-        "caseSensitive": false,
+        "caseSensitive": true,
         "wholeWord": false,
         "filePatterns": [],
         "useGitGrep": true,
         "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 0,
+        "resultsCount": 54,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

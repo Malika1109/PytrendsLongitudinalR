@@ -122,7 +122,7 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
           logger$info("Please have patience as we reset rate limit ... ", extra = list(markup = TRUE))
           Sys.sleep(5)
         } else {
-          stop(e)
+          logger$error(sprintf("[bold red]Whoops![/] An error occurred during the request: %s", e$message), exc_info = TRUE, extra = list(markup = TRUE))
         }
       })
       Sys.sleep(5)
