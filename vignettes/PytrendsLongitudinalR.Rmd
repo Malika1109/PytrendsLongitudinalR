@@ -1,8 +1,8 @@
 ---
-title: "PytrendsLongitudnalR"
+title: "PytrendsLongitudinalR"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PytrendsLongitudnalR}
+  %\VignetteIndexEntry{PytrendsLongitudinalR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-Welcome to the vignette for PytrendsLongitudnalR, a package for collecting and analyzing Google Trends data over time. This vignette will guide you through the setup process and show you how to use the package's main functionalities.
+Welcome to the vignette for PytrendsLongitudinalR, a package for collecting and analyzing Google Trends data over time. This vignette will guide you through the setup process and show you how to use the package's main functionalities.
 
 This is a package for downloading cross-section and time-series Google Trends and converting them to longitudinal data.
 Although Google Trends provides cross-section and time-series search data, longitudinal Google Trends data are not readily available. There exist several practical issues that make it difficult for researchers to generate longitudinal Google Trends data themselves. First, Google Trends provides normalized counts from zero to 100. As a result, combining different regions' time-series Google Trends data does not create desired longitudinal data. For the same reason, combining cross-sectional Google Trends data over time does not create desired longitudinal data. Second, Google Trends has restrictions on data formats and timeline. For instance, if you want to collect daily data for 2 years, you cannot do so. Google Trends automatically provides weekly data if your request timeline is more than 269 days. Similarly, Google Trends automatically provides monthly data if your request timeline is more than 269 weeks even though you want to collect weekly data.
@@ -24,15 +24,15 @@ This package resolves the aforementioned issues and allows researchers to genera
 
 ## Usage
 
-Now you can start using PytrendsLongitudnalR to collect Google Trends data.
+Now you can start using PytrendsLongitudinalR to collect Google Trends data.
 ```{r usage, eval = FALSE}
-library(PytrendsLongitudnalR)
+library(PytrendsLongitudinalR)
 
 # Initialize parameters for data collection
 params <- initialize_request_trends(
   keyword = "Joe Biden",
   topic = "/m/012gx2",
-  folder_name = "biden_save",
+  folder_name = "temp_folder",
   start_date = "2019-12-29",
   end_date = "2024-05-19",
   data_format = "weekly"

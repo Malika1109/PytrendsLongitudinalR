@@ -1,6 +1,6 @@
 {
     "dialog-state": {
-        "query": "urllib",
+        "query": "pytrendslongitudnal",
         "path": "",
         "regex": true,
         "caseSensitive": false,

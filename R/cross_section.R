@@ -31,7 +31,7 @@
 #'   keyword = "Joe Biden",
 #'   topic = "/m/012gx2",
 #'   folder_name = temp_folder,
-#'   start_date = "2019-04-15",
+#'   start_date = "2024-02-01",
 #'   end_date = "2024-05-1",
 #'   data_format = "weekly"
 #' )

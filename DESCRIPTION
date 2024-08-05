@@ -1,4 +1,4 @@
-Package: PytrendsLongitudnalR
+Package: PytrendsLongitudinalR
 Type: Package
 Title: Download Cross-Section and Time-Series Google Trends and Convert Them to Longitudinal Data
 Version: 0.1.0
