@@ -33,7 +33,7 @@
 #' }, pytrends.exceptions.TooManyRequestsError = function(e) {
 #'   message("Too many requests error: ", conditionMessage(e))
 #' })
-#' on.exit(unlink(folder_name, recursive = TRUE))
+#' on.exit(unlink("biden_save", recursive = TRUE))
 #'
 #' }
 #' @export

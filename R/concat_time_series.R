@@ -35,7 +35,7 @@
 #' concat_time_series(params, reference_geo_code = "US-CA")
 #'
 #' # Clean up temporary directory
-#' on.exit(unlink(folder_name, recursive = TRUE))
+#' on.exit(unlink("biden_save", recursive = TRUE))
 #' }
 #' @importFrom utils read.csv write.csv
 

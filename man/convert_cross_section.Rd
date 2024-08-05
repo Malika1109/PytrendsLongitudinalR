@@ -40,6 +40,6 @@ time_series(params, reference_geo_code = "US-CA")
 convert_cross_section(params, reference_geo_code = "US-CA")
 
 # Clean up temporary directory
-unlink(folder_name, recursive = TRUE)
+on.exit(unlink("biden_save", recursive = TRUE))
 }
 }
