@@ -51,7 +51,7 @@
 #'
 #'
 #' # Clean up temporary directory
-#' on.exit(unlink(tempdir(), recursive = TRUE))
+#' on.exit(unlink("biden_save", recursive = TRUE))
 #' }
 #' @importFrom utils read.csv write.csv
 

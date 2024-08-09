@@ -62,6 +62,6 @@ if (result && length(list.files(data_dir)) > 0) {
 
 
 # Clean up temporary directory
-on.exit(unlink(tempdir(), recursive = TRUE))
+on.exit(unlink("biden_save", recursive = TRUE))
 }
 }

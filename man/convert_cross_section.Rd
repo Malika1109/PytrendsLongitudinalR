@@ -67,6 +67,6 @@ if (cross_section_success && time_series_success && length(list.files(data_dir_t
 }
 
 # Clean up temporary directory
-on.exit(unlink(tempdir(), recursive = TRUE))
+on.exit(unlink("biden_save", recursive = TRUE))
 }
 }
