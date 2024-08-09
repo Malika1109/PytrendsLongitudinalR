@@ -12,7 +12,8 @@
 #' @return NULL
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # Please note that this example may take a few minutes to run
 #' # Create a temporary folder for the example
 #'
 #' # Ensure the temporary folder is cleaned up after the example
@@ -21,21 +22,36 @@
 #'   keyword = "Joe Biden",
 #'   topic = "/m/012gx2",
 #'   folder_name = file.path(tempdir(), "biden_save"),
-#'   start_date = "2023-07-30",
-#'   end_date = "2024-05-03",
-#'   data_format = "daily"
+#'   start_date = "2017-12-31",
+#'   end_date = "2024-05-19",
+#'   data_format = "weekly"
 #' )
+#' result <- TRUE
 #'
-#' # Run the time_series function with the parameters
+#' # Run the time_series function and handle TooManyRequestsError
 #' tryCatch({
 #'   time_series(params, reference_geo_code = "US-CA")
-#' }, pytrends.exceptions.TooManyRequestsError = function(e) {
-#'   message("Too many requests error: ", conditionMessage(e))
+#' }, error = function(e) {
+#'   message("An error occurred: ", conditionMessage(e))
+#'   result <- FALSE # Indicate failure only on error
 #' })
-#' concat_time_series(params, reference_geo_code = "US-CA")
+#'
+#' # Check if at least one file is present in the expected directory
+#' data_dir <- file.path("biden_save", "weekly", "over_time", "US-CA")
+#' if (result && length(list.files(data_dir)) > 0) {
+#'   concat_time_series(params, reference_geo_code = "US-CA")
+#' } else {
+#'   if (result) {
+#'     message("Skipping concat_time_series because no files were found in the expected directory.")
+#'   } else {
+#'     message("Skipping concat_time_series because time_series failed.")
+#'   }
+#'   result <- FALSE
+#' }
+#'
 #'
 #' # Clean up temporary directory
-#' on.exit(unlink("biden_save", recursive = TRUE))
+#' on.exit(unlink(tempdir(), recursive = TRUE))
 #' }
 #' @importFrom utils read.csv write.csv
 

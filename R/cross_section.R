@@ -19,6 +19,7 @@
 #'
 #' @examples
 #' \donttest{
+#' # Please note that this example may take a few minutes to run
 #' # Create a temporary folder for the example
 #'
 #' # Ensure the temporary folder is cleaned up after the example
@@ -39,7 +40,7 @@
 #' }, pytrends.exceptions.TooManyRequestsError = function(e) {
 #'   message("Too many requests error: ", conditionMessage(e))
 #' })
-#' on.exit(unlink("biden_save", recursive = TRUE))
+#' on.exit(unlink(tempdir(), recursive = TRUE))
 #' }
 
 

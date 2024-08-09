@@ -2,13 +2,17 @@ Package: PytrendsLongitudinalR
 Type: Package
 Title: Download Cross-Section and Time-Series Google Trends and Convert Them to Longitudinal Data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Malika Dixit <malikasatyendra@gmail.com>
+Authors@R: c(
+    person("Taeyong", "Park", email = "taeyongp@andrew.cmu.edu", role = c("cre", "cph")),
+    person("Malika", "Dixit", email = "malikasatyendra@gmail.com", role = "aut"))
 Description: Google Trends provides cross-sectional and time-series search data but lacks readily available 
     longitudinal data. Researchers face practical challenges, such as normalized counts that hinder the 
     combination of regional and time-series data, and restrictions on data formats and timelines that limit data 
-    granularity over extended periods.
-    This package addresses these issues, enabling researchers to generate longitudinal Google Trends data.
+    granularity over extended periods. 
+    This package addresses these issues, enabling researchers to generate longitudinal Google Trends data.  
+    As long as 'Google Trends API', 'pytrends' and all their dependencies work, this package will also work!
+    During the initialization stage, when users run the initialize_request_trends() method, two 
+    folders will be created automatically - a parent folder with a user-defined name and path, and a subfolder corresponding to the selected data format.
 Encoding: UTF-8
 LazyData: true
 Imports:

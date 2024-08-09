@@ -9,6 +9,7 @@
 #' @param time_window Time window in days to divide the period into segments.
 #'
 #' @return A vector of dates representing the determined time periods.
+#' @noRd
 
 
 determine_time_periods <- function(start_date, end_date, num_of_days, time_window) {

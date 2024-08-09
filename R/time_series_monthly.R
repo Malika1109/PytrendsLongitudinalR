@@ -12,6 +12,7 @@
 #' The filename includes the start and end dates of the data period.
 #' @importFrom utils read.csv write.csv
 #' @return NULL
+#' @noRd
 
 
 time_series_monthly <- function(params, reference_geo_code = "US") {

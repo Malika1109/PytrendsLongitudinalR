@@ -9,6 +9,7 @@
 #' @keywords internal
 #'
 #' @return NULL
+#' @noRd
 
 create_required_directory <- function(folder) {
   if (!dir.exists(folder)) {

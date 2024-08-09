@@ -1,6 +1,6 @@
 {
     "dialog-state": {
-        "query": "cat",
+        "query": "@ noRd",
         "path": "",
         "regex": true,
         "caseSensitive": true,
@@ -9,7 +9,7 @@
         "useGitGrep": true,
         "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 54,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

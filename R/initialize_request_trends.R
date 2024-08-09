@@ -41,7 +41,7 @@
 #'   end_date = "2024-05-03",
 #'   data_format = "daily"
 #' )
-#' on.exit(unlink("biden_save", recursive = TRUE))
+#' on.exit(unlink(tempdir(), recursive = TRUE))
 #'
 #' @export
 

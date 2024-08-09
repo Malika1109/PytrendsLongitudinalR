@@ -21,7 +21,8 @@ This final method will rescale the cross section data based on the concatenated 
 This will finally provide the accurate google trends index for each region/country/city over the provided time period.
 }
 \examples{
-\dontrun{
+\donttest{
+# Please note that this example may take a few minutes to run
 # Create a temporary folder for the example
 
 # Ensure the temporary folder is cleaned up after the example
@@ -34,12 +35,38 @@ params <- initialize_request_trends(
   end_date = "2024-05-03",
   data_format = "daily"
 )
+cross_section_success <- TRUE
+time_series_success <- TRUE
 
-cross_section(params, geo = "US", resolution = "REGION")
-time_series(params, reference_geo_code = "US-CA")
-convert_cross_section(params, reference_geo_code = "US-CA")
+# Run the cross_section function and handle potential errors
+tryCatch({
+  cross_section(params, geo = "US", resolution = "REGION")
+}, pytrends.exceptions.TooManyRequestsError = function(e) {
+  message("Too many requests error in cross_section: ", conditionMessage(e))
+  cross_section_success <- FALSE # Indicate failure
+})
+
+# Run the time_series function and handle potential errors
+tryCatch({
+  time_series(params, reference_geo_code = "US-CA")
+}, pytrends.exceptions.TooManyRequestsError = function(e) {
+  message("Too many requests error in time_series: ", conditionMessage(e))
+  time_series_success <- FALSE # Indicate failure
+})
+
+data_dir_time <- file.path("biden_save", "weekly", "over_time", "US-CA")
+data_dir_region <- file.path("biden_save", "weekly", "by_region")
+
+# Conditionally run convert_cross_section only if both functions succeeded
+if (cross_section_success && time_series_success && length(list.files(data_dir_time)) > 0
+&& length(list.files(data_dir_region)) > 0) {
+  convert_cross_section(params, reference_geo_code = "US-CA")
+} else {
+  message("Skipping convert_cross_section due to previous errors.")
+  result <- FALSE
+}
 
 # Clean up temporary directory
-on.exit(unlink("biden_save", recursive = TRUE))
+on.exit(unlink(tempdir(), recursive = TRUE))
 }
 }
