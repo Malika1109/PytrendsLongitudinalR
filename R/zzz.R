@@ -70,5 +70,20 @@ platform <- NULL
   configure_logging()
 }
 
+.onAttach <- function(libname, pkgname) {
+  if (!interactive()) {
+    return()  # Skip the prompt during non-interactive sessions
+  }
+
+  msg <- "During the initialization stage, two folders will be created automatically - a parent folder with a user-defined name and path, and a subfolder corresponding to the selected data format. Do you want to proceed? (Y/n)"
+  packageStartupMessage(msg)
+
+  response <- readline(prompt = "Enter Y to proceed, or N to abort: ")
+
+  if (toupper(response) != "Y") {
+    stop("Initialization aborted by the user.")
+  }
+}
+
 
 
