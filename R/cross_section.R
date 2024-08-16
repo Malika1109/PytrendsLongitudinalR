@@ -113,6 +113,8 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
         df <- reticulate::py_to_r(df)
         names(df)[names(df) == keyword] <- keyword
         i <- i + 1
+
+        df <- apply(df, 2, as.character)
         write.csv(df, file = file.path(folder_name, data_format, "by_region", paste0(form, "_", i, "-", format(current_time, "%Y%m%d"), "-", format(current_end_time, "%Y%m%d"), ".csv")))
 
       }, error = function(e) {

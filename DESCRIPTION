@@ -12,7 +12,7 @@ Description: Google Trends provides cross-sectional and time-series search data 
     This package addresses these issues, enabling researchers to generate longitudinal Google Trends data.  
     As long as 'Google Trends API', 'pytrends' and all their dependencies work, this package will also work!
     During the initialization stage, when users run the initialize_request_trends() method, two 
-    folders will be created automatically - a parent folder with a user-defined name and path, and a subfolder corresponding to the selected data format.
+    folders will be created automatically - a parent folder with a user-defined name and path, and a sub-folder corresponding to the selected data format.
 Encoding: UTF-8
 LazyData: true
 Imports:
