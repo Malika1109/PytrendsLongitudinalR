@@ -117,7 +117,10 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
 
     #snap_df[[keyword]][is.na(snap_df[[keyword]])] <- zero_replace
     col_name_in_snap <- ifelse(keyword %in% names(snap_df), keyword,
-                               ifelse(topic %in% names(snap_df), topic, NA))
+                               ifelse(topic %in% names(snap_df), topic,
+                                      ifelse(paste0("X", gsub("[^a-zA-Z0-9]", ".", topic)) %in% names(snap_df),
+                                             paste0("X", gsub("[^a-zA-Z0-9]", ".", topic)), NA)))
+
 
 
 
