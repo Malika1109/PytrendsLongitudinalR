@@ -38,7 +38,7 @@
 #' }
 #' @export
 #'
-time_series <- function(params, reference_geo_code = "US") {
+time_series <- function(params, reference_geo_code = "") {
 
   logger <- params$logger
   folder_name <- params$folder_name

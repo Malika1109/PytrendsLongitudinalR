@@ -4,7 +4,7 @@
 \alias{time_series}
 \title{Time Series Data Collection Method}
 \usage{
-time_series(params, reference_geo_code = "US")
+time_series(params, reference_geo_code = "")
 }
 \arguments{
 \item{params}{A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.}

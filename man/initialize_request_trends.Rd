@@ -6,7 +6,7 @@
 \usage{
 initialize_request_trends(
   keyword,
-  topic,
+  topic = NULL,
   folder_name,
   start_date,
   end_date,

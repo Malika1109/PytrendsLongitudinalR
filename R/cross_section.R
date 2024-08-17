@@ -59,11 +59,11 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
   pytrend <- params$pytrend
 
   logger$info("Collecting Cross Section Data now")
-  res <- c("COUNTRY", "REGION", "CITY")
+  res <- c("COUNTRY", "REGION", "CITY", "DMA")
 
-  if (geo == "") {
-    stop("geo cannot be empty. For worldwide data, geo='Worldwide'")
-  }
+  # if (geo == "") {
+  #   stop("geo cannot be empty. For worldwide data, geo='Worldwide'")
+  # }
 
   if ((geo == "" && resolution != "COUNTRY") || (geo != "" && !(resolution %in% res))) {
     logger$info("Incorrect Resolution Provided. Defaulting to 'COUNTRY'")
@@ -107,14 +107,22 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
       i <- i + 1
     } else {
       tryCatch({
-        pytrend$build_payload(kw_list = list(topic), geo = geo, timeframe = sprintf('%s %s', current_time_str, current_end_time_str))
+        # Use the topic if provided; otherwise, use the keyword
+        if (!is.null(topic) && topic != "") {
+          pytrend$build_payload(kw_list = list(topic), geo = geo, timeframe = sprintf('%s %s', current_time_str, current_end_time_str))
+        } else {
+          pytrend$build_payload(kw_list = list(keyword), geo = geo, timeframe = sprintf('%s %s', current_time_str, current_end_time_str))
+        }
         Sys.sleep(5)
         df <- pytrend$interest_by_region(resolution = resolution, inc_geo_code = TRUE, inc_low_vol = TRUE)
+
         df <- reticulate::py_to_r(df)
+
         names(df)[names(df) == keyword] <- keyword
         i <- i + 1
 
         df <- data.frame(lapply(df, as.character), stringsAsFactors = FALSE)
+
         write.csv(df, file = file.path(folder_name, data_format, "by_region", paste0(form, "_", i, "-", format(current_time, "%Y%m%d"), "-", format(current_end_time, "%Y%m%d"), ".csv")))
 
       }, error = function(e) {

@@ -15,7 +15,7 @@
 #' @noRd
 
 
-time_series_monthly <- function(params, reference_geo_code = "US") {
+time_series_monthly <- function(params, reference_geo_code = "") {
 
   logger <- params$logger
   pytrend <- params$pytrend
@@ -35,8 +35,12 @@ time_series_monthly <- function(params, reference_geo_code = "US") {
   } else {
     tryCatch({
       # Build the payload
-      pytrend$build_payload(kw_list = list(topic), geo = reference_geo_code,
-                            timeframe = sprintf('%s %s', format(start_date, "%Y-%m-%d"), format(end_date, "%Y-%m-%d")))
+      pytrend$build_payload(
+        kw_list = if (!is.null(topic) && topic != "") list(topic) else list(keyword),
+        geo = reference_geo_code,
+        timeframe = sprintf('%s %s', format(start_date, "%Y-%m-%d"), format(end_date, "%Y-%m-%d"))
+      )
+
       Sys.sleep(5)
 
       # Get interest over time data
@@ -45,8 +49,16 @@ time_series_monthly <- function(params, reference_geo_code = "US") {
       # Convert to R dataframe and rename columns
       df <- reticulate::py_to_r(df)
 
-      # Save the dataframe to a CSV file
-      write.csv(df, file_path)
+      if (nrow(df) > 0) {
+        # Rename the column from topic to keyword if needed
+        names(df)[names(df) == if (!is.null(topic) && topic != "") topic else keyword] <- keyword
+
+        # Save the dataframe to a CSV file
+        write.csv(df, file_path)
+      } else {
+        logger$info("No data returned for the specified timeframe.")
+      }
+
     }, ResponseError = function(e) {
       logger$info("Please have patience as we reset rate limit ... ", extra = list(markup = TRUE))
       Sys.sleep(5)

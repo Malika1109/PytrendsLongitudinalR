@@ -45,7 +45,7 @@
 #'
 #' @export
 
-initialize_request_trends <- function(keyword, topic, folder_name, start_date, end_date, data_format) {
+initialize_request_trends <- function(keyword, topic = NULL, folder_name, start_date, end_date, data_format) {
   # Convert date strings to R Date objects
   start_date <- as.Date(start_date)
   end_date <- as.Date(end_date)

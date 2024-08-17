@@ -16,7 +16,7 @@
 #' @noRd
 
 
-time_series_nmonthly <- function(params, reference_geo_code = "US") {
+time_series_nmonthly <- function(params, reference_geo_code = "") {
 
   logger <- params$logger
   pytrend <- params$pytrend
@@ -46,8 +46,14 @@ time_series_nmonthly <- function(params, reference_geo_code = "US") {
       logger$info(sprintf("Data for %s to %s already collected. Moving to next date...", format(start, "%d/%m/%Y"), format(end, "%d/%m/%Y")), extra = list(markup = TRUE))
     } else {
       tryCatch({
-        pytrend$build_payload(kw_list = list(topic), geo = reference_geo_code,
-                              timeframe = sprintf('%s %s', format(start, "%Y-%m-%d"), format(end, "%Y-%m-%d")))
+        # Use the topic if provided; otherwise, use the keyword
+
+        pytrend$build_payload(
+          kw_list = if (!is.null(topic) && topic != "") list(topic) else list(keyword),
+          geo = reference_geo_code,
+          timeframe = sprintf('%s %s', format(start, "%Y-%m-%d"), format(end, "%Y-%m-%d"))
+        )
+
         Sys.sleep(5)
         df <- pytrend$interest_over_time()
         df <- reticulate::py_to_r(df)
@@ -57,7 +63,7 @@ time_series_nmonthly <- function(params, reference_geo_code = "US") {
         if (nrow(df) == 0) {
           logger$info(sprintf("No Data was returned for period: %d -> '%s' to '%s'", period, format(start, "%d/%m/%Y"), format(end, "%d/%m/%Y")))
         } else {
-          names(df)[names(df) == topic] <- keyword
+          names(df)[names(df) == if (!is.null(topic) && topic != "") topic else keyword] <- keyword
 
           if ("isPartial" %in% names(df)) {
             df <- df[, !names(df) %in% "isPartial", drop = FALSE]

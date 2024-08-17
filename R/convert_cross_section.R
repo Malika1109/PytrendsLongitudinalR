@@ -71,7 +71,7 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
   start_date <- params$start_date
   end_date <- params$end_date
 
-  logger$info("Rescaling cross section Data now", extra = list(markup = TRUE))
+  #logger$info("Rescaling cross section Data now", extra = list(markup = TRUE))
 
   # Create required directories
   create_required_directory(file.path(folder_name, data_format, "converted"))
@@ -115,19 +115,36 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
     # Read snapshot data
     snap_df <- read.csv(snap_file, header = TRUE, stringsAsFactors = FALSE, na.strings = "", check.names = FALSE)
 
-    #snap_df[[keyword]][is.na(snap_df[[keyword]])] <- zero_replace
-    col_name_in_snap <- ifelse(keyword %in% names(snap_df), keyword,
-                               ifelse(topic %in% names(snap_df), topic,
-                                      ifelse(paste0("X", gsub("[^a-zA-Z0-9]", ".", topic)) %in% names(snap_df),
-                                             paste0("X", gsub("[^a-zA-Z0-9]", ".", topic)), NA)))
+
+    # Handle case where spaces are replaced with periods
+    keyword_with_period <- gsub(" ", ".", keyword)
+    topic_with_period <- gsub(" ", ".", topic)
+
+    # Identify the correct column name in snap_df
+    col_name_in_snap <- if (keyword %in% names(snap_df)) {
+      keyword
+    } else if (keyword_with_period %in% names(snap_df)) {
+      keyword_with_period
+    } else if (topic %in% names(snap_df)) {
+      topic
+    } else if (topic_with_period %in% names(snap_df)) {
+      topic_with_period
+    } else {
+      NA
+    }
 
 
 
 
-    # Replace NA values with zero_replace
-    snap_df[[col_name_in_snap]][is.na(snap_df[[col_name_in_snap]])] <- zero_replace
 
-    #cat(col_name_in_snap)
+
+    # Safely replace NA values if the column exists
+    if (col_name_in_snap %in% names(snap_df)) {
+      snap_df[[col_name_in_snap]][is.na(snap_df[[col_name_in_snap]])] <- zero_replace
+    } else {
+      cat("Error: Column", col_name_in_snap, "does not exist in snap_df.\n")
+    }
+
 
 
     # Find reference value based on geoCode
@@ -136,6 +153,8 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
 
     # Calculate conversion multiplier
     conv_multiplier <- time_ind / ref_value
+
+
 
     # Perform conversion on snapshot dataframe
     snap_df[[col_name]] <- round(snap_df[[col_name_in_snap]] * conv_multiplier, 2)
