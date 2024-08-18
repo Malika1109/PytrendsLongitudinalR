@@ -116,12 +116,21 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
         Sys.sleep(5)
         df <- pytrend$interest_by_region(resolution = resolution, inc_geo_code = TRUE, inc_low_vol = TRUE)
 
+
         df <- reticulate::py_to_r(df)
 
         names(df)[names(df) == keyword] <- keyword
         i <- i + 1
 
-        df <- data.frame(lapply(df, as.character), stringsAsFactors = FALSE)
+        #df <- data.frame(lapply(df, as.character), stringsAsFactors = FALSE)
+        df <- data.frame(lapply(df, function(col) {
+          if (is.list(col)) {
+            as.character(col)
+          } else {
+            col
+          }
+        }), stringsAsFactors = FALSE, row.names = rownames(df))
+
 
         write.csv(df, file = file.path(folder_name, data_format, "by_region", paste0(form, "_", i, "-", format(current_time, "%Y%m%d"), "-", format(current_end_time, "%Y%m%d"), ".csv")))
 

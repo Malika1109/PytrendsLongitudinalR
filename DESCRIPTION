@@ -11,8 +11,11 @@ Description: Google Trends provides cross-sectional and time-series search data 
     granularity over extended periods. 
     This package addresses these issues, enabling researchers to generate longitudinal Google Trends data.  
     As long as 'Google Trends API', 'pytrends' and all their dependencies work, this package will also work!
-    During the initialization stage, when users run the initialize_request_trends() method, two 
-    folders will be created automatically - a parent folder with a user-defined name and path, and a sub-folder corresponding to the selected data format.
+    This package is built on top of 'pytrends', which uses 'Google Trends API' to collect trends data. So we do not have any control over the accuracy or quality of the trends data. 
+    It has been observed during tests that for the same inputs (keyword, topic, data_format, timeline), outputs were little different. If the search term is not very popular, then the resultant dataset will contain a 
+    lot of zeroes that will hugely impact the final outcome.
+    Moreover, 'Google Trends' does not provide data over time for CITY level resolution, hence longitudinal data cannot 
+    be generated for city level from our package.
 Encoding: UTF-8
 LazyData: true
 Imports:
