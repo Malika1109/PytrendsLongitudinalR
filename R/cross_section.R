@@ -5,7 +5,7 @@
 #'
 #' @param params A list containing parameters including logger, data_format, folder_name, start_date, end_date, keyword, topic, num_of_days, and pytrend.
 #' @param geo Country/Region to collect data from. Defaults to worldwide if empty.
-#' @param resolution Resolution level for the data ('COUNTRY', 'REGION', 'CITY'). Defaults to 'COUNTRY'.
+#' @param resolution Resolution level for the data ('COUNTRY', 'REGION', 'CITY', 'DMA'). Defaults to 'COUNTRY'.
 #' @details
 #' This function collects Google Trends data based on the specified parameters and saves it in the following structure:
 #' \code{folder_name/data_format/by_region}.

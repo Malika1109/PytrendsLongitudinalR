@@ -11,7 +11,7 @@ cross_section(params, geo = "", resolution = "COUNTRY")
 
 \item{geo}{Country/Region to collect data from. Defaults to worldwide if empty.}
 
-\item{resolution}{Resolution level for the data ('COUNTRY', 'REGION', 'CITY'). Defaults to 'COUNTRY'.}
+\item{resolution}{Resolution level for the data ('COUNTRY', 'REGION', 'CITY', 'DMA'). Defaults to 'COUNTRY'.}
 }
 \description{
 This function collects cross section data for a given keyword and timeline using the Google Trends API.
