@@ -130,12 +130,14 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
     } else if (topic_with_period %in% names(snap_df)) {
       topic_with_period
     } else {
-      NA
+      # Handle case where topic gets prefixed with ".X"
+      potential_col_name <- paste0("X", gsub("/", ".", topic))
+      if (potential_col_name %in% names(snap_df)) {
+        potential_col_name
+      } else {
+        NA
+      }
     }
-
-
-
-
 
 
     # Safely replace NA values if the column exists
