@@ -76,6 +76,13 @@ concat_time_series <- function(params, reference_geo_code = "US", zero_replace =
 
   # Read each CSV file into a DataFrame and store in dfs list
   files <- list.files(path_to_time_data, full.names = TRUE)
+
+  # Check if the number of files is less than 2
+  if (length(files) < 2) {
+    stop("Since the given period is less than 269 days/weeks/months, concatenation is not necessary and there is no file generated.")
+  }
+
+
   for (file in files) {
     df <- read.csv(file, check.names = FALSE)
     dfs[[length(dfs) + 1]] <- df
