@@ -75,7 +75,7 @@ platform <- NULL
     return()  # Skip the prompt during non-interactive sessions
   }
 
-  msg <- "This package creates new folders in your filespace to store downloaded Google Trends data. Do you want to proceed? (Y/n)"
+  msg <- "This package creates new folders in your filespace to store downloaded Google Trends data. Do you want to proceed? (Y/N)"
   packageStartupMessage(msg)
 
   response <- readline(prompt = "Enter Y to proceed, or N to abort: ")
