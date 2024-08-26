@@ -1,0 +1,8 @@
+{
+  "keyword": ["Coronavirus disease 2019"],
+  "topic": ["/g/11j2cc_qll"],
+  "folder_name": ["covid"],
+  "start_date": ["2020-05-01"],
+  "end_date": ["2020-05-03"],
+  "data_format": ["daily"]
+}
