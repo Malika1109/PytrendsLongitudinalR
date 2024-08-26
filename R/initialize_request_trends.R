@@ -8,7 +8,7 @@
 #' - A subfolder corresponding to the `data_format` (e.g., 'daily', 'weekly', 'monthly') for storing data.
 #'
 #' @param keyword The keyword to be used for collecting Google Trends data.
-#' @param topic The topic associated with the keyword. For example, '/m/0ddwt' will give google trends data for Insomnia as topic of 'Disorder'. If identical to the keyword, data will reflect Google Trends search term data.
+#' @param topic The topic associated with the keyword. For example, '/m/0ddwt' will give Google Trends data for Insomnia as topic of 'Disorder'. If identical to the keyword, data will reflect Google Trends search term data. (NOTE: URL's have certain codes for special characters. For example, %20 = white space, %2F = / (forward slash) etc.)
 #' @param folder_name Name of the parent folder where all data will be stored.
 #' @param start_date The start date from which to collect Google Trends data.
 #' @param end_date The end date until which to collect Google Trends data.

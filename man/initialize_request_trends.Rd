@@ -16,7 +16,7 @@ initialize_request_trends(
 \arguments{
 \item{keyword}{The keyword to be used for collecting Google Trends data.}
 
-\item{topic}{The topic associated with the keyword. For example, '/m/0ddwt' will give google trends data for Insomnia as topic of 'Disorder'. If identical to the keyword, data will reflect Google Trends search term data.}
+\item{topic}{The topic associated with the keyword. For example, '/m/0ddwt' will give Google Trends data for Insomnia as topic of 'Disorder'. If identical to the keyword, data will reflect Google Trends search term data. (NOTE: URL's have certain codes for special characters. For example, %20 = white space, %2F = / (forward slash) etc.)}
 
 \item{folder_name}{Name of the parent folder where all data will be stored.}
 
