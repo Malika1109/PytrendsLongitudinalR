@@ -32,7 +32,7 @@ This rescaled time_series data will be used in the next method to rescale the cr
 params <- initialize_request_trends(
   keyword = "Joe Biden",
   topic = "/m/012gx2",
-  folder_name = file.path(tempdir(), "biden_save"),
+  folder_name = file.path(tempdir(), "test_folder"),
   start_date = "2017-12-31",
   end_date = "2024-05-19",
   data_format = "weekly"
@@ -48,7 +48,7 @@ tryCatch({
 })
 
 # Check if at least one file is present in the expected directory
-data_dir <- file.path("biden_save", "weekly", "over_time", "US-CA")
+data_dir <- file.path("test_folder", "weekly", "over_time", "US-CA")
 if (result && length(list.files(data_dir)) > 0) {
   concat_time_series(params, reference_geo_code = "US-CA")
 } else {
@@ -62,6 +62,6 @@ if (result && length(list.files(data_dir)) > 0) {
 
 
 # Clean up temporary directory
-on.exit(unlink("biden_save", recursive = TRUE))
+on.exit(unlink("test_folder", recursive = TRUE))
 }
 }
