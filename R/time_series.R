@@ -57,5 +57,5 @@ time_series <- function(params, reference_geo_code = "") {
     time_series_monthly(params, reference_geo_code)
   }
 
-  logger$info("[bold green]Collected Time Series Data![/]")
+  logger$info("Collected Time Series Data![/]")
 }

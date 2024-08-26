@@ -74,7 +74,7 @@ time_series_nmonthly <- function(params, reference_geo_code = "") {
         logger$info("Please have patience as we reset rate limit ... ", extra = list(markup = TRUE))
         Sys.sleep(5)
       }, error = function(e) {
-        logger$error(sprintf("[bold red]Whoops![/] An error occurred during the request for period %d: %s", period, e$message), exc_info = TRUE, extra = list(markup = TRUE))
+        logger$error(sprintf("Whoops![/] An error occurred during the request for period %d: %s", period, e$message), exc_info = TRUE, extra = list(markup = TRUE))
       })
     }
   }

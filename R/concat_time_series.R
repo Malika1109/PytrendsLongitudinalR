@@ -117,5 +117,5 @@ concat_time_series <- function(params, reference_geo_code = "US", zero_replace =
   concat_file_path <- file.path(folder_name, data_format, "concat_time_series", paste0(reference_geo_code, ".csv"))
   write.csv(prev_window, concat_file_path, row.names = FALSE)
 
-  logger$info("[bold green]Concatenation Complete! :)[/]", extra = list(markup = TRUE))
+  logger$info("Concatenation Complete! :)[/]", extra = list(markup = TRUE))
 }

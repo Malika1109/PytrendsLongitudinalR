@@ -139,12 +139,12 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
           logger$info("Please have patience as we reset rate limit ... ", extra = list(markup = TRUE))
           Sys.sleep(5)
         } else {
-          logger$error(sprintf("[bold red]Whoops![/] An error occurred during the request: %s", e$message), exc_info = TRUE, extra = list(markup = TRUE))
+          logger$error(sprintf("Whoops![/] An error occurred during the request: %s", e$message), exc_info = TRUE, extra = list(markup = TRUE))
         }
       })
       Sys.sleep(5)
       current_time <- current_time + chng_delta
     }
   }
-  logger$info("[bold green]Successfully Collected Cross Section Data![/]", extra = list(markup = TRUE))
+  logger$info("Successfully Collected Cross Section Data![/]", extra = list(markup = TRUE))
 }

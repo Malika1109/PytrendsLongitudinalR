@@ -180,5 +180,5 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
 
 
 
-  logger$info("[bold green]DONE Converting! :) [/]", extra = list(markup = TRUE))
+  logger$info("DONE Converting! :) [/]", extra = list(markup = TRUE))
 }
