@@ -28,9 +28,9 @@ This will finally provide the accurate google trends index for each region/count
 # Ensure the temporary folder is cleaned up after the example
 # Run the function with the temporary folder
 params <- initialize_request_trends(
-  keyword = "Joe Biden",
-  topic = "/m/012gx2",
-  folder_name = file.path(tempdir(), "biden_save"),
+  keyword = "Coronavirus disease 2019",
+  topic = "/g/11j2cc_qll",
+  folder_name = file.path(tempdir(), "test_folder"),
   start_date = "2024-05-01",
   end_date = "2024-05-03",
   data_format = "daily"
@@ -54,8 +54,8 @@ tryCatch({
   time_series_success <- FALSE # Indicate failure
 })
 
-data_dir_time <- file.path("biden_save", "weekly", "over_time", "US-CA")
-data_dir_region <- file.path("biden_save", "weekly", "by_region")
+data_dir_time <- file.path("test_folder", "weekly", "over_time", "US-CA")
+data_dir_region <- file.path("test_folder", "weekly", "by_region")
 
 # Conditionally run convert_cross_section only if both functions succeeded
 if (cross_section_success && time_series_success && length(list.files(data_dir_time)) > 0
@@ -67,6 +67,6 @@ if (cross_section_success && time_series_success && length(list.files(data_dir_t
 }
 
 # Clean up temporary directory
-on.exit(unlink("biden_save", recursive = TRUE))
+on.exit(unlink("test_folder", recursive = TRUE))
 }
 }

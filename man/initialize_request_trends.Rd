@@ -55,13 +55,13 @@ The initiation stage involves creating two folders automatically:
 # Ensure the temporary folder is cleaned up after the example
 # Run the function with the temporary folder
 params <- initialize_request_trends(
-  keyword = "Joe Biden",
-  topic = "/m/012gx2",
-  folder_name = file.path(tempdir(), "biden_save"),
+  keyword = "Coronavirus disease 2019",
+  topic = "/g/11j2cc_qll",
+  folder_name = file.path(tempdir(), "test_folder"),
   start_date = "2024-05-01",
   end_date = "2024-05-03",
   data_format = "daily"
 )
-on.exit(unlink("biden_save", recursive = TRUE))
+on.exit(unlink("test_folder", recursive = TRUE))
 
 }

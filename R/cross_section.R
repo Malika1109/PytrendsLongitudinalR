@@ -26,9 +26,9 @@
 
 #' # Run the function with the temporary folder
 #' params <- initialize_request_trends(
-#'   keyword = "Joe Biden",
-#'   topic = "/m/012gx2",
-#'   folder_name = file.path(tempdir(), "biden_save"),
+#'   keyword = "Coronavirus disease 2019",
+#'   topic = "/g/11j2cc_qll",
+#'   folder_name = file.path(tempdir(), "test_folder"),
 #'   start_date = "2024-05-01",
 #'   end_date = "2024-05-03",
 #'   data_format = "daily"
@@ -40,7 +40,7 @@
 #' }, pytrends.exceptions.TooManyRequestsError = function(e) {
 #'   message("Too many requests error: ", conditionMessage(e))
 #' })
-#' on.exit(unlink("biden_save", recursive = TRUE))
+#' on.exit(unlink("test_folder", recursive = TRUE))
 #' }
 
 
@@ -146,5 +146,5 @@ cross_section <- function(params, geo = "", resolution = "COUNTRY") {
       current_time <- current_time + chng_delta
     }
   }
-  logger$info("Successfully Collected Cross Section Data![/]", extra = list(markup = TRUE))
+  logger$info("Successfully Collected Cross Section Data!")
 }

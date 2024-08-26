@@ -79,7 +79,7 @@ concat_time_series <- function(params, reference_geo_code = "US", zero_replace =
 
   # Check if the number of files is less than 2
   if (length(files) < 2) {
-    stop("Since the given period is less than 269 days/weeks/months, concatenation is not necessary and there is no file generated.")
+    stop("Since the given period is less than 269 days/weeks/months, concatenation is not necessary and there is no file generated. You can move to convert_cross_section without any problem.")
   }
 
 
@@ -117,5 +117,5 @@ concat_time_series <- function(params, reference_geo_code = "US", zero_replace =
   concat_file_path <- file.path(folder_name, data_format, "concat_time_series", paste0(reference_geo_code, ".csv"))
   write.csv(prev_window, concat_file_path, row.names = FALSE)
 
-  logger$info("Concatenation Complete! :)[/]", extra = list(markup = TRUE))
+  logger$info("Concatenation Complete! :)")
 }
