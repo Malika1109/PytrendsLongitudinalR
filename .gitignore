@@ -1,6 +1,7 @@
 
 /doc/
 /Meta/
-.Rproj.user
+*.Rproj
+.Rproj.user/**
 .Renviron
 .Rhistory
