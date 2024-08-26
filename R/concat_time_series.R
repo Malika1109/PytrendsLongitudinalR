@@ -19,8 +19,8 @@
 #' # Ensure the temporary folder is cleaned up after the example
 #' # Run the function with the temporary folder
 #' params <- initialize_request_trends(
-#'   keyword = "Joe Biden",
-#'   topic = "/m/012gx2",
+#'   keyword = "Coronavirus disease 2019",
+#'   topic = "/g/11j2cc_qll",
 #'   folder_name = file.path(tempdir(), "test_folder"),
 #'   start_date = "2017-12-31",
 #'   end_date = "2024-05-19",
