@@ -1,13 +1,13 @@
 #' Time Series Data Collection Method
 #'
-#' This function collects time series data using the Google Trends API. It dynamically selects between daily, weekly, or monthly data collection based on the time window specified.
+#' This function uses the pytrends.interest_over_time() function available in 'pytrends' Python library to collect time-series Google Trends data and automatically store it in the specified directory.
 #'
-#' @param params A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.
-#' @param reference_geo_code Country/State/City to be used as reference point to rescale the data in later part
+#' @param params A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.
+#' @param reference_geo_code The reference region's Google Trends geo code. Note that Google Trends does not provide a CITY-level geo code.
 
 #' @details
-#' This method collects Google Trends time series data by calling pytrends.interest_over_time(). By default, Google provides weekly data if the time period between start and end dates is more than 270 days, and monthly data if it's more than 270 weeks. This function handles the collection of daily/weekly data in chunks less than 270 days/weeks to accommodate Google's limitations.
-#' The collected data is saved in the structure: \code{folder_name/data_format/over_time/reference_geo_code}.
+#' This function collects Google Trends time-series data based on the specified parameters and saves it in the following structure: \code{folder_name/data_format/over_time/reference_geo_code}. Google Trends provides daily data if the time period between the start and end dates is less than 270 days, weekly data if the time period is between 270 days and 1890 days (270 weeks), and monthly data if it's equal to or greater than 270 weeks.
+#'
 #'
 #' @return NULL
 #'

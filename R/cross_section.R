@@ -12,7 +12,6 @@
 #' The filenames include the start and end dates of the data period.
 #'
 #' PS: This method may take a long time to complete due to Google Trends API rate limits.
-#' For example, collecting 350 days of daily data can take approximately 5 hours.
 
 #' @return NULL
 #'
