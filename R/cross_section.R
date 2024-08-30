@@ -1,7 +1,7 @@
 #' Collect Cross Section Data
 #'
 #' This function collects cross section data for a given keyword and timeline using the Google Trends API.
-#' It retrieves data using the pytrends.interest_by_region() method and saves it automatically to the specified directory.
+#' It retrieves data using the pytrends.interest_by_region() function available in 'pytrends' python library and saves it automatically to the specified directory.
 #'
 #' @param params A list containing parameters including logger, data_format, folder_name, start_date, end_date, keyword, topic, num_of_days, and pytrend.
 #' @param geo Country/Region to collect data from. Defaults to worldwide if empty.
