@@ -30,25 +30,29 @@ library(PytrendsLongitudinalR)
 
 # Initialize parameters for data collection
 params <- initialize_request_trends(
-  keyword = "Joe Biden",
-  topic = "/m/012gx2",
-  folder_name = "biden_save",
+  keyword = "Coronavirus disease 2019",
+  topic = "/g/11j2cc_qll",
+  folder_name = file.path(tempdir(), "test_folder"),
   start_date = "2024-05-01",
   end_date = "2024-05-03",
   data_format = "daily"
 )
 
 # Collect cross-section data
-cross_section(params, geo = "US", resolution = "REGION")
+cross_section(params, geo = "US", resolution = "REGION") # REGION as a resolution is a sub-region of US in this example, and it indicates US states.
 
-# Collect time series data
-time_series(params, reference_geo_code = "US-CA")
+# Collect reference time-series data
+time_series(params, reference_geo_code = "US-CA") # The selected reference is California and its Google Trends Geo is 'US-CA'.
 
+# Given the short time period in this example, no concatenation is needed.
+concat_time_series(params, reference_geo_code = "US", zero_replace = 0.1) # Error occurs because given period is less than 269 days, concatenation is unnecessary. You can move to convert_cross_section() without any problems.
+
+# Use the reference time-series data to re-scale the cross-sectional data. 
 convert_cross_section(params, reference_geo_code = "US-CA")
 ```
 
 ## WARNING
-Please make sure to run the methods in the following sequence:
+We recommend that the user run the functions in the following sequence:
 
 cross_section
 
@@ -58,12 +62,11 @@ concat_time_series
 
 convert_time_series
 
-We have noticed some unusual behaviors if not run in the given sequence. Firstly concat_time_series depends on time_series and convert_cross_section depends on all the three. We have noticed if time_series is ran before cross_section then sometimes the output gets influenced by time_series parameters. We are troubleshooting the issue. Until then, please follow the sequence to attain the expected result.
+First, the cross-sectional and reference time-series data must be created. The concat_time_series() function uses the reference time-series data files to concatenate multiple sets of time series. Finally, the convert_time_series() function uses the concatenated reference time series to re-scale the cross-sectional data. 
 
-
-When using the initialize_request_trends, cross_section, time_series, and convert_cross_section functions, you might encounter a 429 Too Many Requests error. This error indicates that you have exceeded the rate limits set by the Google Trends API. 
+The user may encounter a 429 Too Many Requests error when using cross_section() and time_series() to collect Google Trends data. This error indicates that the user has exceeded the rate limits set by the Google Trends API.
 Here are a few strategies to mitigate the impact of this error:
 
-1) Lower the frequency of your requests or extend the time periods between requests. If you're making requests with high frequency, consider spacing them out or reducing the number of requests made in a given time frame.
+1) Lower the frequency of your requests or extend the interval between requests. If you're making requests with high frequency, consider spacing them out or reducing the number of requests made in a given time frame.
 
-2) Adjust Time Periods: If you're querying a large time range or a high-resolution granularity, try reducing the scope of your queries. Smaller time periods or lower resolution might help stay within the rate limits.
+2) If you're querying a large time range or a high-resolution granularity, try reducing the scope of your queries. Smaller time periods and/or lower resolution might help stay within the rate limits.
