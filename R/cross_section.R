@@ -1,6 +1,6 @@
-#' Collect Cross Section Data
+#' Collect Cross-Section Google Trends Data
 #'
-#' This function uses the pytrends.interest_by_region() function available in 'pytrends' Python library to collect cross-section Google Trends data and automatically store it in the specified directory.
+#' This function uses the 'pytrends.interest_by_region()' function available in 'pytrends' Python library to collect cross-section Google Trends data and automatically store it in the specified directory.
 #'
 #' @param params A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.
 #' @param geo Country/Region to collect data from. Defaults to Worldwide if empty.

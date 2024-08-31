@@ -1,14 +1,14 @@
-#' Concatenation of Time series method
+#' Concatenate Multiple Time-Series Data Sets
 #'
-#' @param params A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.
-#' @param reference_geo_code This is the same geo code that is used in collecting time_series data. If the time_series data for that geo is not collected beforehand, or the file does not exist, it will throw and error. Default is 'US'
-#' @param zero_replace As data from different time periods are rescaled, sometimes the last/first data point of a period might be zero. Then the calculation will throw error or everything single data point will become zero. To avoid that, we are tweaking the zeroes to be of an insignificant number to carry on with the calculation.
+#' This function concatenates the time-series data collected by the 'time_series()' function.
+#'
+#' @param params A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.
+#' @param reference_geo_code Google Trends Geo code for the user-selected reference region. For example, UK's Geo is 'GB', Central Denmark Region's Geo is 'DK-82, and US DMA Philadelphia PA's Geo is '504'. The default is 'US'.
+#' @param zero_replace When re-scaling data from different time periods for concatenation, the last/first data point of a time period may be zero. Then the calculation will throw an error, or every single data point will be zero. To avoid this, the user can adjust the zero to an insignificant number to continue the calculation. The default is 0.1.
 
 #' @details
-#' This method will concat the time series data collected in time_series() method.
-#' Because the data points in time_series is independent of each other, they needs to be re-aligned to get correct index for the given time period.
-#' This method concatenates time_series data for all the period and gives back the combined rescaled time_series data for the reference timeline.
-#' This rescaled time_series data will be used in the next method to rescale the cross_section data.
+#' This method concatenates the reference time-series data collected by the 'time_series()' function when the function has produced more than one data file. Because the time series data of each time period is normalized, the multiple time-series data sets are not on the same scale and must be re-scaled.
+#' The re-scaled reference time-series data will be used in the next step to re-scale the cross-section data. If the given period is less than 269 days/weeks/months, and the 'time_series()' function produced only one data file, concatenation is unnecessary, and thus no concatenated file will be created in this step. The user can move to the 'convert_cross_section()' function without any problems.
 #' @return NULL
 #'
 #' @examples
