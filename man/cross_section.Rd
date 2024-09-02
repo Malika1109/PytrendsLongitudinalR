@@ -2,20 +2,19 @@
 % Please edit documentation in R/cross_section.R
 \name{cross_section}
 \alias{cross_section}
-\title{Collect Cross Section Data}
+\title{Collect Cross-Section Google Trends Data}
 \usage{
 cross_section(params, geo = "", resolution = "COUNTRY")
 }
 \arguments{
-\item{params}{A list containing parameters including logger, data_format, folder_name, start_date, end_date, keyword, topic, num_of_days, and pytrend.}
+\item{params}{A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.}
 
-\item{geo}{Country/Region to collect data from. Defaults to worldwide if empty.}
+\item{geo}{Country/Region to collect data from. Defaults to Worldwide if empty.}
 
-\item{resolution}{Resolution level for the data ('COUNTRY', 'REGION', 'CITY', 'DMA'). Defaults to 'COUNTRY'.}
+\item{resolution}{Resolution is a sub-region of the region selected for 'geo' ('COUNTRY', 'REGION', 'CITY', 'DMA'). Defaults to 'COUNTRY'.}
 }
 \description{
-This function collects cross section data for a given keyword and timeline using the Google Trends API.
-It retrieves data using the pytrends.interest_by_region() method and saves it automatically to the specified directory.
+This function uses the 'pytrends.interest_by_region()' function available in 'pytrends' Python library to collect cross-section Google Trends data and automatically store it in the specified directory.
 }
 \details{
 This function collects Google Trends data based on the specified parameters and saves it in the following structure:
@@ -24,7 +23,6 @@ Each file contains data for a specific time period (day/week/month) and geograph
 The filenames include the start and end dates of the data period.
 
 PS: This method may take a long time to complete due to Google Trends API rate limits.
-For example, collecting 350 days of daily data can take approximately 5 hours.
 }
 \examples{
 \donttest{

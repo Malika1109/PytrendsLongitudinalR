@@ -2,21 +2,20 @@
 % Please edit documentation in R/time_series.R
 \name{time_series}
 \alias{time_series}
-\title{Time Series Data Collection Method}
+\title{Collect Time-Series Google Trends Data}
 \usage{
 time_series(params, reference_geo_code = "")
 }
 \arguments{
-\item{params}{A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.}
+\item{params}{A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.}
 
-\item{reference_geo_code}{Country/State/City to be used as reference point to rescale the data in later part}
+\item{reference_geo_code}{Google Trends Geo code for the user-selected reference region. For example, UK's Geo is 'GB', Central Denmark Region's Geo is 'DK-82, and US DMA Philadelphia PA's Geo is '504'. Default is 'US'.}
 }
 \description{
-This function collects time series data using the Google Trends API. It dynamically selects between daily, weekly, or monthly data collection based on the time window specified.
+This function uses the 'pytrends.interest_over_time()' function available in 'pytrends' Python library to collect time-series Google Trends data and automatically store it in the specified directory.
 }
 \details{
-This method collects Google Trends time series data by calling pytrends.interest_over_time(). By default, Google provides weekly data if the time period between start and end dates is more than 270 days, and monthly data if it's more than 270 weeks. This function handles the collection of daily/weekly data in chunks less than 270 days/weeks to accommodate Google's limitations.
-The collected data is saved in the structure: \code{folder_name/data_format/over_time/reference_geo_code}.
+This function collects Google Trends time-series data based on the specified parameters and saves it in the following structure: \code{folder_name/data_format/over_time/reference_geo_code}. Google Trends provides daily data if the time period between the start and end dates is less than 270 days, weekly data if the time period is between 270 days and 1890 days (270 weeks), and monthly data if it's equal to or greater than 270 weeks.
 }
 \examples{
 \donttest{

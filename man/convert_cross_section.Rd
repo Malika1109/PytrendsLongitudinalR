@@ -2,23 +2,22 @@
 % Please edit documentation in R/convert_cross_section.R
 \name{convert_cross_section}
 \alias{convert_cross_section}
-\title{Converting Cross-section data method}
+\title{Convert the Cross-Section data for Re-scaling.}
 \usage{
 convert_cross_section(params, reference_geo_code = "US-CA", zero_replace = 0.1)
 }
 \arguments{
-\item{params}{A list containing parameters including logger, folder_name, data_format, time_window, and other necessary parameters for sub-functions.}
+\item{params}{A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.}
 
-\item{reference_geo_code}{Same as the reference_geo from time_series(). If any other is used, then the result will not be accurate}
+\item{reference_geo_code}{Google Trends Geo code for the user-selected reference region. For example, UK's Geo is 'GB', Central Denmark Region's Geo is 'DK-82, and US DMA Philadelphia PA's Geo is '504'. The default is 'US'.}
 
-\item{zero_replace}{Same as zero_replace from concat_time_series(). It is highly recommended to use the same to avoid incosistent results.}
+\item{zero_replace}{When re-scaling data from different time periods for concatenation, the last/first data point of a time period may be zero. Then the calculation will throw an error, or every single data point will be zero. To avoid this, the user can adjust the zero to an insignificant number to continue the calculation. The default is 0.1.}
 }
 \description{
-Converting Cross-section data method
+This function uses the single or concatenated reference time-series data to re-scale the cross-section data collected by the cross_section() function.
 }
 \details{
-This final method will rescale the cross section data based on the concatenated time series data.
-This will finally provide the accurate google trends index for each region/country/city over the provided time period.
+This final method rescales the cross-section data based on the concatenated time series data to generate re-scaled accurate longitudinal Google Trends index.
 }
 \examples{
 \donttest{
