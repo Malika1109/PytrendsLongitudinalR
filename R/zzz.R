@@ -35,7 +35,7 @@ platform <- NULL
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     }, error = function(e) {
       # Attempt to install the python3-venv package
-      system("sudo apt-get update && sudo apt-get install -y python3.12-venv", intern = TRUE)
+      system("sudo apt install python3-venv", intern = TRUE)
       # Retry creating the virtual environment
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     })
