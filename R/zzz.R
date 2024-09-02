@@ -34,10 +34,14 @@ platform <- NULL
     tryCatch({
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     }, error = function(e) {
-      # Attempt to install the python3-venv package
-      system("sudo apt-get install python3.12-venv", intern = TRUE)
-      # Retry creating the virtual environment
-      reticulate::virtualenv_create(envname = venv_path, python = python_path)
+      message <- paste(
+        "The virtual environment was not created successfully because ensurepip is not available.",
+        "On Debian/Ubuntu systems, you need to install the python3-venv package using the following command:\n",
+        "    sudo apt install python3.12-venv\n",
+        "After installing the package, recreate your virtual environment.",
+        sep = "\n"
+      )
+      stop(message)
     })
   } else {
     # Non-Debian/Ubuntu handling
