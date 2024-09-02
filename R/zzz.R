@@ -36,10 +36,10 @@ platform <- NULL
   if (!reticulate::virtualenv_exists(venv_path)) {
     # If it doesn't exist, attempt to create it
     tryCatch({
-      reticulate::virtualenv_create(envname = venv_path, python = python_path)
+      reticulate::virtualenv_create(envname = venv_path, python = python_path, force = TRUE, module = getOption("reticulate.virtualenv.module"))
     }, error = function(e) {
       # Fallback: install Python and create the virtual environment
-      reticulate::virtualenv_create(envname = venv_path)
+      reticulate::virtualenv_create(envname = venv_path, force = TRUE, module = getOption("reticulate.virtualenv.module"))
     })
   }
 
