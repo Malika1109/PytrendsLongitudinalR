@@ -22,20 +22,32 @@ platform <- NULL
   # Specify desired Python version
   desired_python_version <- "3.11.9"
 
+  os_type <- Sys.info()["sysname"]
+
   # Define paths
   venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
   python_path <- file.path(venv_path, "bin", "python")
 
 
-  # Check if the virtual environment exists
-  if (!reticulate::virtualenv_exists(venv_path)) {
-    # If it doesn't exist, attempt to create it
+  # Debian/Ubuntu-specific handling
+  if (os_type == "Linux" && file.exists("/etc/debian_version")) {
     tryCatch({
       reticulate::virtualenv_create(envname = venv_path, python = python_path)
     }, error = function(e) {
-      # Fallback: install Python and create the virtual environment
-      reticulate::virtualenv_create(envname = venv_path)
+      # Attempt to install the python3-venv package
+      system("sudo apt-get update && sudo apt-get install -y python3.12-venv", intern = TRUE)
+      # Retry creating the virtual environment
+      reticulate::virtualenv_create(envname = venv_path, python = python_path)
     })
+  } else {
+    # Non-Debian/Ubuntu handling
+    if (!reticulate::virtualenv_exists(venv_path)) {
+      tryCatch({
+        reticulate::virtualenv_create(envname = venv_path, python = python_path)
+      }, error = function(e) {
+        stop("Failed to create a virtual environment. Ensure Python venv package is installed.")
+      })
+    }
   }
 
   # Use the virtual environment for reticulate operations
