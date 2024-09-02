@@ -27,9 +27,9 @@ platform <- NULL
   python_path <- file.path(venv_path, "bin", "python")
 
   # Ensure 'virtualenv' is installed
-  if (!reticulate::py_module_available("virtualenv")) {
-    reticulate::py_install("virtualenv")
-  }
+  #if (!reticulate::py_module_available("virtualenv")) {
+  #  reticulate::py_install("virtualenv")
+  #}
 
 
   # Check if the virtual environment exists
