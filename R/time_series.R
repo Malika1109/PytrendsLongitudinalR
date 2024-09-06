@@ -16,26 +16,31 @@
 #' # Create a temporary folder for the example
 #'
 #' # Ensure the temporary folder is cleaned up after the example
-
-#' # Run the function with the temporary folder
-#' params <- initialize_request_trends(
-#'   keyword = "Coronavirus disease 2019",
-#'   topic = "/g/11j2cc_qll",
-#'   folder_name = file.path(tempdir(), "test_folder"),
-#'   start_date = "2024-05-01",
-#'   end_date = "2024-05-03",
-#'   data_format = "daily"
-#' )
 #'
-#' # Run the time_series function with the parameters
-#' tryCatch({
-#'   time_series(params, reference_geo_code = "US-CA")
-#' }, pytrends.exceptions.TooManyRequestsError = function(e) {
+#'
+#' if (reticulate::py_module_available("pytrends")) {
+#'   params <- initialize_request_trends(
+#'     keyword = "Coronavirus disease 2019",
+#'     topic = "/g/11j2cc_qll",
+#'     folder_name = file.path(tempdir(), "test_folder"),
+#'     start_date = "2024-05-01",
+#'     end_date = "2024-05-03",
+#'     data_format = "daily"
+#'   )
+#'   on.exit(unlink("test_folder", recursive = TRUE))
+#'
+#'   # Run the time_series function with the parameters
+#'   tryCatch({
+#'     time_series(params, reference_geo_code = "US-CA")
+#'   }, pytrends.exceptions.TooManyRequestsError = function(e) {
 #'   message("Too many requests error: ", conditionMessage(e))
-#' })
-#' on.exit(unlink("test_folder", recursive = TRUE))
-#'
+#'   })
+#' } else {
+#'   message("The 'pytrends' module is not available.
+#'   Please install it by running install_pytrendslongitudinalr()")
 #' }
+#' }
+
 #' @export
 #'
 time_series <- function(params, reference_geo_code = "") {

@@ -10,6 +10,6 @@ configure_logging <- function(level = "INFO", format = "%(message)s", datefmt = 
     level = level,
     format = format,
     datefmt = datefmt,
-    handlers = list(RichHandler(rich_tracebacks = rich_tracebacks))
+    handlers = list(rc$RichHandler(rich_tracebacks = rich_tracebacks))
   )
 }

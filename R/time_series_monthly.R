@@ -64,7 +64,8 @@ time_series_monthly <- function(params, reference_geo_code = "") {
       Sys.sleep(5)
     }, error = function(e) {
 
-      logger$error(sprintf("Whoops![/] An error occurred during the request"), exc_info = TRUE, extra = list(markup = TRUE))
+      logger$error(sprintf("[bold]Whoops![/bold] An error occurred during the request: %s", e$message), exc_info = TRUE, extra = list(markup = TRUE))
+
     })
   }
 }

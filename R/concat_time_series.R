@@ -17,41 +17,44 @@
 #' # Create a temporary folder for the example
 #'
 #' # Ensure the temporary folder is cleaned up after the example
-#' # Run the function with the temporary folder
-#' params <- initialize_request_trends(
-#'   keyword = "Coronavirus disease 2019",
-#'   topic = "/g/11j2cc_qll",
-#'   folder_name = file.path(tempdir(), "test_folder"),
-#'   start_date = "2017-12-31",
-#'   end_date = "2024-05-19",
-#'   data_format = "weekly"
-#' )
-#' result <- TRUE
+#' if (reticulate::py_module_available("pytrends")) {
+#'   params <- initialize_request_trends(
+#'     keyword = "Coronavirus disease 2019",
+#'     topic = "/g/11j2cc_qll",
+#'     folder_name = file.path(tempdir(), "test_folder"),
+#'     start_date = "2017-12-31",
+#'     end_date = "2024-05-19",
+#'     data_format = "weekly"
+#'   )
+#'   result <- TRUE
 #'
-#' # Run the time_series function and handle TooManyRequestsError
-#' tryCatch({
-#'   time_series(params, reference_geo_code = "US-CA")
-#' }, error = function(e) {
-#'   message("An error occurred: ", conditionMessage(e))
-#'   result <- FALSE # Indicate failure only on error
-#' })
+#'   # Run the time_series function and handle TooManyRequestsError
+#'   tryCatch({
+#'     time_series(params, reference_geo_code = "US-CA")
+#'   }, error = function(e) {
+#'     message("An error occurred: ", conditionMessage(e))
+#'     result <- FALSE # Indicate failure only on error
+#'   })
 #'
-#' # Check if at least one file is present in the expected directory
-#' data_dir <- file.path("test_folder", "weekly", "over_time", "US-CA")
-#' if (result && length(list.files(data_dir)) > 0) {
-#'   concat_time_series(params, reference_geo_code = "US-CA")
-#' } else {
-#'   if (result) {
-#'     message("Skipping concat_time_series because no files were found in the expected directory.")
+#'   # Check if at least one file is present in the expected directory
+#'   data_dir <- file.path("test_folder", "weekly", "over_time", "US-CA")
+#'   if (result && length(list.files(data_dir)) > 0) {
+#'     concat_time_series(params, reference_geo_code = "US-CA")
 #'   } else {
-#'     message("Skipping concat_time_series because time_series failed.")
+#'     if (result) {
+#'       message("Skipping concat_time_series because no files were found in the expected directory.")
+#'     } else {
+#'       message("Skipping concat_time_series because time_series failed.")
+#'     }
+#'     result <- FALSE
 #'   }
-#'   result <- FALSE
+#'
+#'   # Clean up temporary directory
+#'   on.exit(unlink("test_folder", recursive = TRUE))
+#' } else {
+#'   message("The 'pytrends' module is not available.
+#'   Please install it by running install_pytrendslongitudinalr()")
 #' }
-#'
-#'
-#' # Clean up temporary directory
-#' on.exit(unlink("test_folder", recursive = TRUE))
 #' }
 #' @importFrom utils read.csv write.csv
 

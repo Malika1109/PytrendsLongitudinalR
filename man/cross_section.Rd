@@ -30,22 +30,28 @@ PS: This method may take a long time to complete due to Google Trends API rate l
 # Create a temporary folder for the example
 
 # Ensure the temporary folder is cleaned up after the example
-# Run the function with the temporary folder
-params <- initialize_request_trends(
-  keyword = "Coronavirus disease 2019",
-  topic = "/g/11j2cc_qll",
-  folder_name = file.path(tempdir(), "test_folder"),
-  start_date = "2024-05-01",
-  end_date = "2024-05-03",
-  data_format = "daily"
-)
 
-# Run the cross_section function with the parameters
-tryCatch({
-  cross_section(params, geo = "US", resolution = "REGION")
-}, pytrends.exceptions.TooManyRequestsError = function(e) {
-  message("Too many requests error: ", conditionMessage(e))
-})
-on.exit(unlink("test_folder", recursive = TRUE))
+if (reticulate::py_module_available("pytrends")) {
+  params <- initialize_request_trends(
+    keyword = "Coronavirus disease 2019",
+    topic = "/g/11j2cc_qll",
+    folder_name = file.path(tempdir(), "test_folder"),
+    start_date = "2024-05-01",
+    end_date = "2024-05-03",
+    data_format = "daily"
+  )
+
+  # Run the cross_section function with the parameters
+  tryCatch({
+    cross_section(params, geo = "US", resolution = "REGION")
+  }, error = function(e) {
+    message("An error occurred: ", e$message)
+  })
+  on.exit(unlink("test_folder", recursive = TRUE))
+} else {
+  message("The 'pytrends' module is not available.
+  Please install it by running install_pytrendslongitudinalr()")
 }
+}
+
 }

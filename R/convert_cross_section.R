@@ -15,48 +15,51 @@
 #' # Create a temporary folder for the example
 #'
 #' # Ensure the temporary folder is cleaned up after the example
-#' # Run the function with the temporary folder
-#' params <- initialize_request_trends(
-#'   keyword = "Coronavirus disease 2019",
-#'   topic = "/g/11j2cc_qll",
-#'   folder_name = file.path(tempdir(), "test_folder"),
-#'   start_date = "2024-05-01",
-#'   end_date = "2024-05-03",
-#'   data_format = "daily"
-#' )
-#' cross_section_success <- TRUE
-#' time_series_success <- TRUE
+#' if (reticulate::py_module_available("pytrends")) {
+#'   params <- initialize_request_trends(
+#'     keyword = "Coronavirus disease 2019",
+#'     topic = "/g/11j2cc_qll",
+#'     folder_name = file.path(tempdir(), "test_folder"),
+#'     start_date = "2024-05-01",
+#'     end_date = "2024-05-03",
+#'     data_format = "daily"
+#'   )
+#'   cross_section_success <- TRUE
+#'   time_series_success <- TRUE
 #'
-#' # Run the cross_section function and handle potential errors
-#' tryCatch({
-#'   cross_section(params, geo = "US", resolution = "REGION")
-#' }, pytrends.exceptions.TooManyRequestsError = function(e) {
-#'   message("Too many requests error in cross_section: ", conditionMessage(e))
-#'   cross_section_success <- FALSE # Indicate failure
-#' })
+#'   # Run the cross_section function and handle potential errors
+#'   tryCatch({
+#'     cross_section(params, geo = "US", resolution = "REGION")
+#'   }, pytrends.exceptions.TooManyRequestsError = function(e) {
+#'     message("Too many requests error in cross_section: ", conditionMessage(e))
+#'     cross_section_success <- FALSE # Indicate failure
+#'   })
 #'
-#' # Run the time_series function and handle potential errors
-#' tryCatch({
-#'   time_series(params, reference_geo_code = "US-CA")
-#' }, pytrends.exceptions.TooManyRequestsError = function(e) {
-#'   message("Too many requests error in time_series: ", conditionMessage(e))
-#'   time_series_success <- FALSE # Indicate failure
-#' })
+#'   # Run the time_series function and handle potential errors
+#'   tryCatch({
+#'     time_series(params, reference_geo_code = "US-CA")
+#'   }, pytrends.exceptions.TooManyRequestsError = function(e) {
+#'     message("Too many requests error in time_series: ", conditionMessage(e))
+#'     time_series_success <- FALSE # Indicate failure
+#'   })
 #'
-#' data_dir_time <- file.path("test_folder", "weekly", "over_time", "US-CA")
-#' data_dir_region <- file.path("test_folder", "weekly", "by_region")
+#'   data_dir_time <- file.path("test_folder", "daily", "over_time", "US-CA")
+#'   data_dir_region <- file.path("test_folder", "daily", "by_region")
 #'
-#' # Conditionally run convert_cross_section only if both functions succeeded
-#' if (cross_section_success && time_series_success && length(list.files(data_dir_time)) > 0
-#' && length(list.files(data_dir_region)) > 0) {
-#'   convert_cross_section(params, reference_geo_code = "US-CA")
+#'   # Conditionally run convert_cross_section only if both functions succeeded
+#'   if (cross_section_success && time_series_success && length(list.files(data_dir_time)) > 0
+#'   && length(list.files(data_dir_region)) > 0) {
+#'     convert_cross_section(params, reference_geo_code = "US-CA")
+#'   } else {
+#'     message("Skipping convert_cross_section due to previous errors.")
+#'   }
+#'
+#'   # Clean up temporary directory
+#'   on.exit(unlink("test_folder", recursive = TRUE))
 #' } else {
-#'   message("Skipping convert_cross_section due to previous errors.")
-#'   result <- FALSE
+#'   message("The 'pytrends' module is not available.
+#'   Please install it by running install_pytrendslongitudinalr()")
 #' }
-#'
-#' # Clean up temporary directory
-#' on.exit(unlink("test_folder", recursive = TRUE))
 #' }
 
 #' @importFrom utils read.csv write.csv tail

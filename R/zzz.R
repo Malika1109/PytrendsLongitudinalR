@@ -1,7 +1,7 @@
 # R/zzz.R
 
 # Global references to Python modules (will be initialized in .onLoad)
-TrendReq <- NULL
+pytrendsRequest <- NULL
 ResponseError <- NULL
 pd <- NULL
 os <- NULL
@@ -13,61 +13,36 @@ relativedelta <- NULL
 time <- NULL
 logging <- NULL
 console <- NULL
-RichHandler <- NULL
+rc <- NULL
 math <- NULL
 platform <- NULL
 
-.onLoad <- function(libname, pkgname) {
-
-  # Specify desired Python version
-  desired_python_version <- "3.11.9"
-  os_type <- Sys.info()["sysname"]
-
-  # Define paths
-  venv_path <- file.path(Sys.getenv("HOME"), ".virtualenvs", "pytrends-in-r-new")
-  python_path <- file.path(venv_path, "bin", "python")
-
-  # Ensure 'virtualenv' is installed
-  if (!reticulate::py_module_available("virtualenv")) {
-    reticulate::py_install("virtualenv")
-  }
-
-
-  # Debian/Ubuntu-specific handling
-  if (os_type == "Linux" && file.exists("/etc/debian_version")) {
-    tryCatch({
-      reticulate::virtualenv_create(envname = venv_path, python = python_path)
-    }, error = function(e) {
-      # Attempt to install the python3-venv package
-      system("apt install python3.12-venv", intern = TRUE)
-      # Retry creating the virtual environment
-      reticulate::virtualenv_create(envname = venv_path, python = python_path)
-    })
+# A separate function to handle Python environment setup and package installation
+install_pytrendslongitudinalr <- function(envname = "pytrends-in-r-new", ...) {
+  if (reticulate::virtualenv_exists(envname)) {
+    message("Virtual environment exists. Reinstalling packages if necessary...")
   } else {
-    # Non-Debian/Ubuntu handling
-    if (!reticulate::virtualenv_exists(venv_path)) {
-      tryCatch({
-        reticulate::virtualenv_create(envname = venv_path, python = python_path)
-      }, error = function(e) {
-        stop("Failed to create a virtual environment. Ensure Python venv package is installed.")
-      })
-    }
+    message("Creating virtual environment...")
+    reticulate::virtualenv_create(envname = envname)
   }
 
-  # Use the virtual environment for reticulate operations
-  reticulate::use_virtualenv(venv_path, required = TRUE)
+  # Install the required Python packages
+  reticulate::py_install(
+    c("pandas", "requests", "pytrends", "rich"),
+    envname = envname,
+    ...
+  )
+}
 
-  # Install packages if not already installed
-  packages_to_install <- c("pandas", "requests", "pytrends", "rich")
-  for (package in packages_to_install) {
-    if (!reticulate::py_module_available(package)) {
-      reticulate::py_install(package, envname = "pytrends-in-r-new")
-    }
+.onLoad <- function(libname, pkgname) {
+  # Soft preference for a named virtual environment, but don't require it
+  reticulate::use_virtualenv("pytrends-in-r-new", required = FALSE)
+
+  # Initialize delayed loading of Python modules
+  if (reticulate::py_module_available("pytrends")) {
+    pytrendsRequest <<- reticulate::import("pytrends.request", delay_load = TRUE)
   }
-
-
-  TrendReq <<- reticulate::import("pytrends.request", delay_load = TRUE)$TrendReq
-  ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)$ResponseError
+  ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)
   pd <<- reticulate::import("pandas", delay_load = TRUE)
   os <<- reticulate::import("os", delay_load = TRUE)
   glob <<- reticulate::import("glob", delay_load = TRUE)
@@ -77,12 +52,12 @@ platform <- NULL
   relativedelta <<- reticulate::import("dateutil.relativedelta", delay_load = TRUE)
   time <<- reticulate::import("time", delay_load = TRUE)
   logging <<- reticulate::import("logging", delay_load = TRUE)
-  console <<- reticulate::import("rich.console", delay_load = TRUE)$Console
-  RichHandler <<- reticulate::import("rich.logging", delay_load = TRUE)$RichHandler
+  console <<- reticulate::import("rich.console", delay_load = TRUE)
+  rc <<- reticulate::import("rich.logging", delay_load = TRUE)
   math <<- reticulate::import("math", delay_load = TRUE)
   platform <<- reticulate::import("platform", delay_load = TRUE)
 
-  # Configure logging
+  # Optionally configure logging
   configure_logging()
 }
 
@@ -100,6 +75,5 @@ platform <- NULL
     stop("Initialization aborted by the user.")
   }
 }
-
 
 

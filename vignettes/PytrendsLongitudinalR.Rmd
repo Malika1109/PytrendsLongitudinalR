@@ -21,6 +21,18 @@ This is a package for downloading cross-section and time-series Google Trends an
 Although Google Trends provides cross-section and time-series search data, longitudinal Google Trends data are not readily available. There exist several practical issues that make it difficult for researchers to generate longitudinal Google Trends data themselves. First, Google Trends provides normalized counts from zero to 100. As a result, combining different regions' time-series Google Trends data does not create desired longitudinal data. For the same reason, combining cross-sectional Google Trends data over time does not create desired longitudinal data. Second, Google Trends has restrictions on data formats and timeline. For instance, if you want to collect daily data for 2 years, you cannot do so. Google Trends automatically provides weekly data if your request timeline is more than 269 days. Similarly, Google Trends automatically provides monthly data if your request timeline is more than 269 weeks even though you want to collect weekly data.
 This package resolves the aforementioned issues and allows researchers to generate longitudinal Google Trends.
 
+## Installation
+
+Make sure Python is installed on your system. You can download from www.python.org/downloads, or call the install_python() from reticulate.
+
+Finally, load the library and call install_pytrendslongitudinalr() function to install PytrendsLongitudinalR. This will automatically create an isolated virtual environment named “pytrends-in-r-new”
+```{r installation, eval = FALSE}
+
+library(PytrendsLongitudinalR)
+install_pytrendslongitudinalr(envname = "pytrends-in-r-new")
+
+```
+
 
 ## Usage
 

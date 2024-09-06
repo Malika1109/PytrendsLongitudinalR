@@ -53,15 +53,20 @@ The initiation stage involves creating two folders automatically:
 # Create a temporary folder for the example
 
 # Ensure the temporary folder is cleaned up after the example
-# Run the function with the temporary folder
-params <- initialize_request_trends(
-  keyword = "Coronavirus disease 2019",
-  topic = "/g/11j2cc_qll",
-  folder_name = file.path(tempdir(), "test_folder"),
-  start_date = "2024-05-01",
-  end_date = "2024-05-03",
-  data_format = "daily"
-)
-on.exit(unlink("test_folder", recursive = TRUE))
+if (reticulate::py_module_available("pytrends")) {
+  # Run the function with the temporary folder
+  params <- initialize_request_trends(
+    keyword = "Coronavirus disease 2019",
+    topic = "/g/11j2cc_qll",
+    folder_name = file.path(tempdir(), "test_folder"),
+    start_date = "2024-05-01",
+    end_date = "2024-05-03",
+    data_format = "daily"
+  )
+  on.exit(unlink("test_folder", recursive = TRUE))
+} else {
+  message("The 'pytrends' module is not available.
+  Please install it by running install_pytrendslongitudinalr()")
+}
 
 }
