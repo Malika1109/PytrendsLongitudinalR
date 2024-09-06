@@ -17,22 +17,6 @@ rc <- NULL
 math <- NULL
 platform <- NULL
 
-# A separate function to handle Python environment setup and package installation
-install_pytrendslongitudinalr <- function(envname = "pytrends-in-r-new", ...) {
-  if (reticulate::virtualenv_exists(envname)) {
-    message("Virtual environment exists. Reinstalling packages if necessary...")
-  } else {
-    message("Creating virtual environment...")
-    reticulate::virtualenv_create(envname = envname)
-  }
-
-  # Install the required Python packages
-  reticulate::py_install(
-    c("pandas", "requests", "pytrends", "rich"),
-    envname = envname,
-    ...
-  )
-}
 
 .onLoad <- function(libname, pkgname) {
   # Soft preference for a named virtual environment, but don't require it
