@@ -32,11 +32,11 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
-      # Setup R-hub platforms
-      - uses: r-hub/actions/setup@v1
-        with:
-          config: ${{ github.event.inputs.config }}
-        id: rhub-setup
+    # NO NEED TO CHECKOUT HERE
+    - uses: r-hub/actions/setup@v1
+      with:
+        config: ${{ github.event.inputs.config }}
+      id: rhub-setup
 
   linux-containers:
     needs: setup
@@ -60,18 +60,6 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-
-      # Setup Python environment
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      # Setup reticulate virtual environment and install Python packages
-      - name: Setup reticulate virtual environment
-        run: |
-          Rscript -e "reticulate::virtualenv_create(envname = 'pytrends-in-r-new', python = Sys.which('python'))"
-          Rscript -e "reticulate::py_install(c('pandas', 'requests', 'pytrends', 'rich'), envname = 'pytrends-in-r-new')"
-
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
@@ -93,22 +81,14 @@ jobs:
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-
+      - uses: r-hub/actions/platform-info@v1
+        with:
+          token: ${{ secrets.RHUB_TOKEN }}
+          job-config: ${{ matrix.config.job-config }}
       - uses: r-hub/actions/setup-deps@v1
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
-
-      # Install Python and setup reticulate virtualenv
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Setup reticulate virtual environment
-        run: |
-          Rscript -e "reticulate::virtualenv_create(envname = 'pytrends-in-r-new', python = Sys.which('python'))"
-          Rscript -e "reticulate::py_install(c('pandas', 'requests', 'pytrends', 'rich'), envname = 'pytrends-in-r-new')"
-
       - uses: r-hub/actions/run-check@v1
         with:
           job-config: ${{ matrix.config.job-config }}
