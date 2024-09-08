@@ -2,15 +2,13 @@
 #'
 #' This function sets up the Python virtual environment and installs required packages.
 #' @param envname Name of the virtual environment.
+#' @param new_env Checks if virtual environment already exists
 #' @param ... Additional arguments passed to `py_install()`.
+#' @importFrom reticulate py_install virtualenv_exists virtualenv_remove
 #' @export
-install_pytrendslongitudinalr <- function(envname = "pytrends-in-r-new", ...) {
-  if (reticulate::virtualenv_exists(envname)) {
-    message("Virtual environment exists. Reinstalling packages if necessary...")
-  } else {
-    message("Creating virtual environment...")
-    reticulate::virtualenv_create(envname = envname)
-  }
+install_pytrendslongitudinalr <- function(envname = "pytrends-in-r-new", new_env = identical(envname, "pytrends-in-r-new"), ...) {
+  if(new_env && virtualenv_exists(envname))
+    virtualenv_remove(envname)
 
   # Install the required Python packages
   reticulate::py_install(
@@ -19,3 +17,5 @@ install_pytrendslongitudinalr <- function(envname = "pytrends-in-r-new", ...) {
     ...
   )
 }
+
+
