@@ -63,8 +63,8 @@ jobs:
       # Install system dependencies (libffi-dev)
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libffi-dev
+          apt-get update
+          apt-get install -y libffi-dev
 
       # Setup Python environment
       - uses: actions/setup-python@v4
