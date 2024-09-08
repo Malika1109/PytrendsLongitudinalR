@@ -1,7 +1,7 @@
 Package: PytrendsLongitudinalR
 Type: Package
 Title: Download Cross-Section and Time-Series Google Trends and Convert Them to Longitudinal Data
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Taeyong", "Park", email = "taeyongp@andrew.cmu.edu", role = c("cre", "cph", "aut")),
     person("Malika", "Dixit", email = "malikasatyendra@gmail.com", role = "aut"))
