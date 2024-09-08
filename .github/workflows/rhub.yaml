@@ -69,7 +69,7 @@ jobs:
       # Setup reticulate virtual environment and install Python packages
       - name: Setup reticulate virtual environment
         run: |
-          Rscript -e "reticulate::install_python(version = "3.11")"
+          Rscript -e "reticulate::install_python(version = '3.11')"
           Rscript -e "reticulate::virtualenv_create(envname = 'pytrends-in-r-new')"
           Rscript -e "reticulate::py_install(c('pandas', 'requests', 'pytrends', 'rich'), envname = 'pytrends-in-r-new')"
 
@@ -107,7 +107,7 @@ jobs:
 
       - name: Setup reticulate virtual environment
         run: |
-          Rscript -e "reticulate::install_python(version = "3.11")"
+          Rscript -e "reticulate::install_python(version = '3.11')"
           Rscript -e "reticulate::virtualenv_create(envname = 'pytrends-in-r-new')"
           Rscript -e "reticulate::py_install(c('pandas', 'requests', 'pytrends', 'rich'), envname = 'pytrends-in-r-new')"
 
