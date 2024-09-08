@@ -22,10 +22,9 @@ platform <- NULL
   # Soft preference for a named virtual environment, but don't require it
   reticulate::use_virtualenv("pytrends-in-r-new", required = FALSE)
 
+
   # Initialize delayed loading of Python modules
-  if (reticulate::py_module_available("pytrends")) {
-    pytrendsRequest <<- reticulate::import("pytrends.request", delay_load = TRUE)
-  }
+  pytrendsRequest <<- reticulate::import("pytrends.request", delay_load = TRUE)
   ResponseError <<- reticulate::import("pytrends.exceptions", delay_load = TRUE)
   pd <<- reticulate::import("pandas", delay_load = TRUE)
   os <<- reticulate::import("os", delay_load = TRUE)
@@ -40,6 +39,8 @@ platform <- NULL
   rc <<- reticulate::import("rich.logging", delay_load = TRUE)
   math <<- reticulate::import("math", delay_load = TRUE)
   platform <<- reticulate::import("platform", delay_load = TRUE)
+
+
 
   # Optionally configure logging
   configure_logging()
