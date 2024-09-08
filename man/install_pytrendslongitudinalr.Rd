@@ -4,10 +4,16 @@
 \alias{install_pytrendslongitudinalr}
 \title{Install and Set Up Python Environment for PytrendsLongitudinalR}
 \usage{
-install_pytrendslongitudinalr(envname = "pytrends-in-r-new", ...)
+install_pytrendslongitudinalr(
+  envname = "pytrends-in-r-new",
+  new_env = identical(envname, "pytrends-in-r-new"),
+  ...
+)
 }
 \arguments{
 \item{envname}{Name of the virtual environment.}
+
+\item{new_env}{Checks if virtual environment already exists}
 
 \item{...}{Additional arguments passed to `py_install()`.}
 }
