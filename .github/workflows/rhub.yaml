@@ -64,7 +64,7 @@ jobs:
       # Setup Python environment
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.12.0"
 
       # Setup reticulate virtual environment and install Python packages
       - name: Setup reticulate virtual environment
@@ -102,7 +102,7 @@ jobs:
       # Install Python and setup reticulate virtualenv
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.12.0"
 
       - name: Setup reticulate virtual environment
         run: |
