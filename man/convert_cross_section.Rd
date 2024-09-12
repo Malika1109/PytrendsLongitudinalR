@@ -13,6 +13,9 @@ convert_cross_section(params, reference_geo_code = "US-CA", zero_replace = 0.1)
 
 \item{zero_replace}{When re-scaling data from different time periods for concatenation, the last/first data point of a time period may be zero. Then the calculation will throw an error, or every single data point will be zero. To avoid this, the user can adjust the zero to an insignificant number to continue the calculation. The default is 0.1.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This function uses the single or concatenated reference time-series data to re-scale the cross-section data collected by the cross_section() function.
 }

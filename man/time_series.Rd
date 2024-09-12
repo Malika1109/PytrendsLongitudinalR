@@ -11,6 +11,9 @@ time_series(params, reference_geo_code = "")
 
 \item{reference_geo_code}{Google Trends Geo code for the user-selected reference region. For example, UK's Geo is 'GB', Central Denmark Region's Geo is 'DK-82, and US DMA Philadelphia PA's Geo is '504'. Default is 'US'.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This function uses the 'pytrends.interest_over_time()' function available in 'pytrends' Python library to collect time-series Google Trends data and automatically store it in the specified directory.
 }

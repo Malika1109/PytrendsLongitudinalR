@@ -13,6 +13,9 @@ cross_section(params, geo = "", resolution = "COUNTRY")
 
 \item{resolution}{Resolution is a sub-region of the region selected for 'geo' ('COUNTRY', 'REGION', 'CITY', 'DMA'). Defaults to 'COUNTRY'.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This function uses the 'pytrends.interest_by_region()' function available in 'pytrends' Python library to collect cross-section Google Trends data and automatically store it in the specified directory.
 }

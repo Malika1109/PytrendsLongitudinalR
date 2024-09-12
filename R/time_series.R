@@ -9,7 +9,8 @@
 #' This function collects Google Trends time-series data based on the specified parameters and saves it in the following structure: \code{folder_name/data_format/over_time/reference_geo_code}. Google Trends provides daily data if the time period between the start and end dates is less than 270 days, weekly data if the time period is between 270 days and 1890 days (270 weeks), and monthly data if it's equal to or greater than 270 weeks.
 #'
 #'
-#' @return NULL
+#' @return No return value, called for side effects.
+
 #'
 #' @examples
 #' \donttest{

@@ -13,6 +13,9 @@ concat_time_series(params, reference_geo_code = "US", zero_replace = 0.1)
 
 \item{zero_replace}{When re-scaling data from different time periods for concatenation, the last/first data point of a time period may be zero. Then the calculation will throw an error, or every single data point will be zero. To avoid this, the user can adjust the zero to an insignificant number to continue the calculation. The default is 0.1.}
 }
+\value{
+No return value, called for side effects. The function concatenates the time-series data and saves it as a CSV file.
+}
 \description{
 This function concatenates the time-series data collected by the 'time_series()' function.
 }

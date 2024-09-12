@@ -7,7 +7,7 @@
 #' @param zero_replace When re-scaling data from different time periods for concatenation, the last/first data point of a time period may be zero. Then the calculation will throw an error, or every single data point will be zero. To avoid this, the user can adjust the zero to an insignificant number to continue the calculation. The default is 0.1.
 #' @details
 #' This final method rescales the cross-section data based on the concatenated time series data to generate re-scaled accurate longitudinal Google Trends index.
-#' @return NULL
+#' @return No return value, called for side effects.
 #'
 #' @examples
 #' \donttest{
@@ -149,7 +149,7 @@ convert_cross_section <- function(params, reference_geo_code = "US-CA", zero_rep
     if (col_name_in_snap %in% names(snap_df)) {
       snap_df[[col_name_in_snap]][is.na(snap_df[[col_name_in_snap]])] <- zero_replace
     } else {
-      cat("Error: Column", col_name_in_snap, "does not exist in snap_df.\n")
+      message("Error: Column ", col_name_in_snap, " does not exist in snap_df.")
     }
 
 

@@ -13,7 +13,7 @@
 #'
 #' PS: This method may take a long time to complete due to Google Trends API rate limits.
 
-#' @return NULL
+#' @return No return value, called for side effects.
 #'
 #' @examples
 #' \donttest{

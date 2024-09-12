@@ -17,6 +17,9 @@ install_pytrendslongitudinalr(
 
 \item{...}{Additional arguments passed to `py_install()`.}
 }
+\value{
+No return value, called for side effects. This function sets up the virtual environment and installs required Python packages.
+}
 \description{
 This function sets up the Python virtual environment and installs required packages.
 }

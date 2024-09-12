@@ -9,7 +9,7 @@
 #' @details
 #' This method concatenates the reference time-series data collected by the 'time_series()' function when the function has produced more than one data file. Because the time series data of each time period is normalized, the multiple time-series data sets are not on the same scale and must be re-scaled.
 #' The re-scaled reference time-series data will be used in the next step to re-scale the cross-section data. If the given period is less than 269 days/weeks/months, and the 'time_series()' function produced only one data file, concatenation is unnecessary, and thus no concatenated file will be created in this step. The user can move to the 'convert_cross_section()' function without any problems.
-#' @return NULL
+#' @return No return value, called for side effects. The function concatenates the time-series data and saves it as a CSV file.
 #'
 #' @examples
 #' \donttest{
