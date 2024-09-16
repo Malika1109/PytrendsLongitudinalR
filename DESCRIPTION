@@ -26,6 +26,7 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 License: MIT + file LICENSE
+SystemRequirements: Python (>= 3.7), pip (for installing Python packages), pytrends, pandas, requests, rich
 Config/reticulate:
   list(
     virtualenv = "pytrends-in-r-new",
