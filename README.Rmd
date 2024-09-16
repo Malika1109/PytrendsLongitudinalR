@@ -42,7 +42,7 @@ python3 --version
 If you see a version number (e.g., Python 3.8.5), you’re ready to proceed.
 If Python is not installed or the version is below 3.7, you’ll need to install or update it.
 
-Install Python (if not already installed):
+Install Python (Optional - since installing the package in Step 2 will automatically handle Python installations):
 MacOS and Windows: Download the latest version of Python from the official Python website: https://www.python.org/downloads/. 
 
 Linux: Most Linux distributions already include Python, but if you need to install it or update to a newer version, run:
