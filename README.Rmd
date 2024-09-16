@@ -55,7 +55,7 @@ sudo apt-get install python3
 
 Step 2: Install PytrendsLongitudinalR
 
-Once Python is installed, you can proceed with installing the PytrendsLongitudinalR package. This package interacts with Python to retrieve Google Trends data, so it requires some additional Python packages (pandas, requests, pytrends, rich)  to work correctly. The process is automated using the install_pytrendslongitudinalr() function.
+Once Python is installed, you can proceed with installing the PytrendsLongitudinalR package. This package interacts with Python to retrieve Google Trends data, so it requires some additional Python packages (pandas, requests, pytrends)  to work correctly. The process is automated using the install_pytrendslongitudinalr() function.
 
 The function automatically creates an isolated Python virtual environment named pytrends-in-r-new to keep the Python packages separate from your system Python and installs the required Python packages in this virtual environment.
 
@@ -74,7 +74,7 @@ install_pytrendslongitudinalr(envname = "pytrends-in-r-new")
 
 What this does:
 It checks if the virtual environment pytrends-in-r-new already exists.
-If it doesn’t exist, it creates it and installs the required Python packages (pandas, requests, pytrends, rich).
+If it doesn’t exist, it creates it and installs the required Python packages (pandas, requests, pytrends).
 If you ever need to reinstall the environment, the function can also remove and recreate the environment.
 
 Troubleshooting Python Installation Issues:
@@ -85,7 +85,7 @@ MacOS users: If Python is not found, ensure that you are using the command pytho
 Manual Installation (optional - not recommended for this package): If you prefer to manually install the Python packages outside of R, you can run the following command in your terminal (if you have pip or pip3 installed):
 ```{r installation5, eval = FALSE}
 
-pip3 install pytrends pandas requests rich
+pip3 install pytrends pandas requests
 
 ```
 

@@ -2,9 +2,8 @@ Package: PytrendsLongitudinalR
 Type: Package
 Title: Create Longitudinal Google Trends Data
 Version: 0.1.4
-Authors@R: c(
-    person("Taeyong", "Park", email = "taeyongp@andrew.cmu.edu", role = c("cre", "cph", "aut")),
-    person("Malika", "Dixit", email = "malikasatyendra@gmail.com", role = "aut"))
+Authors@R: 
+    person("Malika", "Dixit", email = "malikasatyendra@gmail.com", role = c("cre", "cph", "aut"))
 Description: 'Google Trends' provides cross-sectional and time-series data on searches, but lacks readily available 
     longitudinal data. Researchers, who want to create longitudinal 'Google Trends' on their own, face practical challenges, such as normalized counts that make it difficult to combine 
     cross-sectional and time-series data and limitations in data formats and timelines that limit data 
@@ -26,14 +25,13 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 License: MIT + file LICENSE
-SystemRequirements: Python (>= 3.7), pip (for installing Python packages), pytrends, pandas, requests, rich
+SystemRequirements: Python (>= 3.7), pip (for installing Python packages), pytrends, pandas, requests
 Config/reticulate:
   list(
     virtualenv = "pytrends-in-r-new",
     packages = list(
       list(package = "pandas"),
       list(package = "requests"),
-      list(package = "pytrends"),
-      list(package = "rich")
+      list(package = "pytrends")
     )
   )
