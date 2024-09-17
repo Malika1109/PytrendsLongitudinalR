@@ -1,6 +1,6 @@
 #' Concatenate Multiple Time-Series Data Sets
 #'
-#' This function concatenates the time-series data collected by the 'time_series()' function.
+#' This function concatenates the time-series data collected by the 'time_series()' function
 #'
 #' @param params A list containing parameters including keyword, topic, folder_name, start_date, end_date, and data_format.
 #' @param reference_geo_code Google Trends Geo code for the user-selected reference region. For example, UK's Geo is 'GB', Central Denmark Region's Geo is 'DK-82, and US DMA Philadelphia PA's Geo is '504'. The default is 'US'.

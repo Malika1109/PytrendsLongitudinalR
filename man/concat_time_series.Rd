@@ -17,7 +17,7 @@ concat_time_series(params, reference_geo_code = "US", zero_replace = 0.1)
 No return value, called for side effects. The function concatenates the time-series data and saves it as a CSV file.
 }
 \description{
-This function concatenates the time-series data collected by the 'time_series()' function.
+This function concatenates the time-series data collected by the 'time_series()' function
 }
 \details{
 This method concatenates the reference time-series data collected by the 'time_series()' function when the function has produced more than one data file. Because the time series data of each time period is normalized, the multiple time-series data sets are not on the same scale and must be re-scaled.
